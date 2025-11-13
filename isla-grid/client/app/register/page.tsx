@@ -1,15 +1,20 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
+import { useAuth } from "@/providers/authentication";
+import { useRouter } from "next/navigation";
 
 const REGISTER_IMAGE =
   "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1600&q=80";
 
 const RegisterPage = () => {
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const { user, state, login, register, logout, error, loginWithGoogle } =
+    useAuth();
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     const payload = {
@@ -19,12 +24,21 @@ const RegisterPage = () => {
     };
     // TODO: hand off to registration endpoint
     console.log("register payload", payload);
+
+    await register(payload.email, payload.password, payload.name);
   };
 
-  const handleGoogleSignIn = () => {
+  const handleGoogleSignIn = async () => {
     // TODO: trigger Google OAuth flow
     console.log("register with Google");
+    await loginWithGoogle();
   };
+
+  const router = useRouter();
+  useEffect(() => {
+    if (state === "authenticated") router.push("/dashboard");
+    if (error) alert(error);
+  }, [state, user]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-linear-to-br from-white via-[#FFF5EB] to-white px-4 py-10 text-gray-900">

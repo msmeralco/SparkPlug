@@ -1,19 +1,42 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const PageNavbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
+  const linkColorClass = hasScrolled
+    ? 'text-gray-700 hover:text-[#FC7019]'
+    : 'text-white hover:text-white/80';
 
   const toggleMenu = () => setIsOpen(!isOpen);
 
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      setHasScrolled(window.scrollY > 10);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-[#FFFDFA]/90 backdrop-blur-md shadow-sm z-50">
+    <nav
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        hasScrolled ? 'bg-[#FFFDFA]/90 backdrop-blur-md shadow-sm' : 'bg-transparent'
+      }`}
+    >
       <div className="container mx-auto px-6 py-4">
         <div className="flex flex-nowrap justify-between items-center ">
-          <a href="#" className="text-3xl font-extrabold text-[#131B28] whitespace-nowrap">
+          <a
+            href="#"
+            className={`text-3xl font-extrabold whitespace-nowrap transition-colors duration-300 ${
+              hasScrolled ? 'text-[#131B28]' : 'text-white'
+            }`}
+          >
             <span className="text-[#FC7019]">Isla</span>Grid
           </a>
           
@@ -21,25 +44,25 @@ const PageNavbar = () => {
           <div className="hidden md:flex md:flex-nowrap items-center space-x-8">
              <a
                href="#problem"
-               className="text-gray-700 hover:text-[#FC7019] font-medium whitespace-nowrap"
+               className={`${linkColorClass} font-medium whitespace-nowrap transition-colors duration-200`}
              >
                The Problem
              </a>
              <a
                href="#solution"
-               className="text-gray-700 hover:text-[#FC7019] font-medium whitespace-nowrap"
+               className={`${linkColorClass} font-medium whitespace-nowrap transition-colors duration-200`}
              >
                Solution
              </a>
              <a
                href="#about"
-               className="text-gray-700 hover:text-[#FC7019] font-medium whitespace-nowrap"
+               className={`${linkColorClass} font-medium whitespace-nowrap transition-colors duration-200`}
              >
                About Us
              </a>
              <a
                href="#features"
-               className="text-gray-700 hover:text-[#FC7019] font-medium whitespace-nowrap"
+               className={`${linkColorClass} font-medium whitespace-nowrap transition-colors duration-200`}
              >
                How It Works
              </a>
@@ -54,7 +77,9 @@ const PageNavbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={toggleMenu}
-            className="md:hidden text-gray-700 hover:text-[#FC7019] focus:outline-none"
+            className={`md:hidden focus:outline-none transition-colors duration-200 ${
+              hasScrolled ? 'text-gray-700 hover:text-[#FC7019]' : 'text-white hover:text-white/80'
+            }`}
             aria-label="Toggle menu"
           >
             {isOpen ? (
@@ -101,28 +126,28 @@ const PageNavbar = () => {
             <a
               href="#problem"
               onClick={closeMenu}
-              className="text-gray-700 hover:text-[#FC7019] font-medium py-2"
+              className={`${linkColorClass} font-medium py-2 transition-colors duration-200`}
             >
               The Problem
             </a>
             <a
               href="#solution"
               onClick={closeMenu}
-              className="text-gray-700 hover:text-[#FC7019] font-medium py-2"
+              className={`${linkColorClass} font-medium py-2 transition-colors duration-200`}
             >
               IslaGrid Solution
             </a>
             <a
               href="#about"
               onClick={closeMenu}
-              className="text-gray-700 hover:text-[#FC7019] font-medium py-2"
+              className={`${linkColorClass} font-medium py-2 transition-colors duration-200`}
             >
               About Us
             </a>
             <a
               href="#features"
               onClick={closeMenu}
-              className="text-gray-700 hover:text-[#FC7019] font-medium py-2"
+              className={`${linkColorClass} font-medium py-2 transition-colors duration-200`}
             >
               How It Works
             </a>

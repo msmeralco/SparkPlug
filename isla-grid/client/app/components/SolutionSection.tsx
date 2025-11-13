@@ -1,15 +1,16 @@
 "use client";
 
-import { useCallback, type SyntheticEvent } from "react";
+import { useCallback, useState } from "react";
+import Image from "next/image";
 
 const SolutionSection = () => {
-  const handleImageError = useCallback(
-    (event: SyntheticEvent<HTMLImageElement>) => {
-      event.currentTarget.src =
-        "https://placehold.co/600x400/34d399/ffffff?text=Community+Energy";
-    },
-    []
-  );
+  const [imageSrc, setImageSrc] = useState<string>("/aaa.png");
+
+  const handleImageError = useCallback(() => {
+    setImageSrc(
+      "https://placehold.co/600x400/34d399/ffffff?text=Community+Energy"
+    );
+  }, []);
 
   return (
     <section id="solution" className="py-24 bg-[#131B28] text-white">
@@ -46,11 +47,13 @@ const SolutionSection = () => {
             </div>
           </div>
           <div className="lg:w-1/2 lg:pl-6 xl:pl-12 flex justify-center lg:justify-end">
-            <img
-              src="https://images.unsplash.com/photo-1599712211919-86c0d8c6b1fc?auto=format&fit=crop&w=1000&q=80"
+            <Image
+              src={imageSrc}
               onError={handleImageError}
               alt="A community solar panel installation"
               className="rounded-2xl shadow-2xl max-w-full"
+              width={600}
+              height={400}
             />
           </div>
         </div>
