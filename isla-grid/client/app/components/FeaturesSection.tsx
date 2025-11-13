@@ -8,7 +8,7 @@ const FeaturesSection = () => (
           How It Works
         </h2>
         <p className="mt-3 text-4xl md:text-5xl font-extrabold text-[#131B28]">
-          A 3-Step System for Community Empowerment
+          A 2-Step System for Community Empowerment
         </p>
       </div>
       <div className="mt-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
@@ -30,69 +30,19 @@ const FeaturesSection = () => (
           <ProposalForm />
         </div>
       </div>
-      <div className="mt-20 flex flex-col lg:flex-row-reverse items-center gap-12 lg:gap-20">
-        <div className="lg:w-1/2 lg:pl-10">
-          <span className="inline-flex items-center px-4 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
-            Step 2: Produce & Sell
-          </span>
-          <h3 className="mt-4 text-3xl font-extrabold text-[#131B28]">
-            Smart Energy Exchange Platform
-          </h3>
-          <p className="mt-4 text-lg text-gray-700">
-            The community's new plant connects to Meralco's grid via a smart
-            meter. As a micro-powerplant franchisee, your LGU sells electricity
-            directly to the national grid. Meralco takes a small commission
-            until the plant is paid off, ensuring a self-sustaining financial
-            model.
-          </p>
-          <p className="mt-4 text-lg text-gray-700">
-            A public website provides transparent monthly readings for full
-            accountability.
-          </p>
-        </div>
-        <div className="lg:w-1/2 w-full">
-          <div className="bg-[#131B28] rounded-2xl shadow-2xl border p-8 text-white">
-            <h4 className="text-xl font-bold">
-              Live Monitoring Dashboard (Demo)
-            </h4>
-            <p className="text-sm text-gray-400 mb-6">
-              Barangay San Juan - Hydro Plant
-            </p>
-            <div className="mt-8">
-              <p className="text-sm uppercase tracking-wider text-[#FC7019]">
-                Energy Sold to Grid (Last 30 Days)
-              </p>
-              <p className="text-4xl font-extrabold">
-                12,450{" "}
-                <span className="text-2xl font-medium text-gray-300">kWh</span>
-              </p>
-              <div className="w-full h-2 bg-gray-700 rounded-full mt-2">
-                <div className="w-3/4 h-2 bg-[#FC7019] rounded-full"></div>
-              </div>
-              <p className="text-sm text-gray-400 mt-1">
-                75% of 16,600 kWh capacity
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="mt-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div className="lg:w-1/2 lg:pr-10">
           <span className="inline-flex items-center px-4 py-1 bg-blue-100 text-blue-800 text-sm font-medium rounded-full">
-            Step 3: Profit & Empower
+            Step 2: Profit & Empower
           </span>
           <h3 className="mt-4 text-3xl font-extrabold text-[#131B28]">
             NFC Card & Resident Web App
           </h3>
           <p className="mt-4 text-lg text-gray-700">
-            Profits are distributed directly to residents via a secure NFC card,
-            linked to a centralized banking system. This gives families the
-            freedom to use their earnings for goods and services, not just as
-            bill credits.
+           Earnings from your excess solar energy are transferred securely through an NFC-linked account, giving you full control over how to use your energy credits. You can apply them as a discount on your next monthly electricity bill or spend your excess credits with partnered local SMEs as a new mode of sustainable payment.
           </p>
           <p className="mt-4 text-lg text-gray-700">
-            Residents can track their balance, transactions, and community
-            energy stats through a simple web application.
+            All transactions, balances, and energy performance are easily accessible through your personal web dashboard, so you always know how much you’re saving and earning.
           </p>
         </div>
         <div className="lg:w-1/2 w-full flex flex-col sm:flex-row gap-8 items-center justify-center">

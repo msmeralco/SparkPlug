@@ -17,7 +17,7 @@ const AboutSection = () => (
         </p>
       </div>
       <div className="mt-16 grid md:grid-cols-2 gap-8">
-        <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+  <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
           <div className="bg-orange-100 text-[#FC7019] w-12 h-12 rounded-full flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -43,7 +43,7 @@ const AboutSection = () => (
             into shared prosperity and energy independence.
           </p>
         </div>
-        <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100">
+  <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
           <div className="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -68,7 +68,7 @@ const AboutSection = () => (
           </div>
           <h3 className="mt-5 text-2xl font-bold text-[#131B28]">Our Vision</h3>
           <p className="mt-2 text-gray-700 leading-relaxed">
-            A sustainable and equitable Philippines where every barangay, big or
+            A sustainable and equitable Philippines where every household, barangay, big or
             small, runs on clean energy that is owned, managed, and benefits the
             community itself.
           </p>

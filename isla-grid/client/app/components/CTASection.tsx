@@ -5,9 +5,9 @@ const CTASection = () => (
         Ready to power your community?
       </h2>
       <p className="mt-6 text-lg text-gray-300 max-w-2xl mx-auto">
-        We're looking for partner LGUs, barangays, and cooperatives to pilot the
-        IslaGrid system. Let's build a brighter, more sustainable future for the
-        Philippines, together.
+        Take the first step toward clean, affordable, and independent energy. IslaGrid Home helps you generate, save, and even earn from your own power.
+
+        Join thousands of Filipino families building a brighter, more sustainable future — one household at a time.
       </p>
       <a
         href="#"

@@ -14,8 +14,8 @@ const SolutionSection = () => {
   return (
     <section id="solution" className="py-24 bg-[#131B28] text-white">
       <div className="container mx-auto px-6">
-        <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="lg:w-1/2">
+        <div className="flex flex-col lg:flex-row items-center lg:items-stretch justify-between gap-12">
+          <div className="lg:w-1/2 lg:pr-6 xl:pr-12">
             <h2 className="text-sm font-bold uppercase text-[#FC7019] tracking-widest">
               Our Solution
             </h2>
@@ -45,12 +45,12 @@ const SolutionSection = () => {
               </a>
             </div>
           </div>
-          <div className="lg:w-1/2">
+          <div className="lg:w-1/2 lg:pl-6 xl:pl-12 flex justify-center lg:justify-end">
             <img
               src="https://images.unsplash.com/photo-1599712211919-86c0d8c6b1fc?auto=format&fit=crop&w=1000&q=80"
               onError={handleImageError}
               alt="A community solar panel installation"
-              className="rounded-2xl shadow-2xl"
+              className="rounded-2xl shadow-2xl max-w-full"
             />
           </div>
         </div>

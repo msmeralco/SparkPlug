@@ -1,0 +1,13 @@
+
+// payload for POST api/readings 
+// create new reading
+{
+    "payload" : {
+    "communityId": "communityId",
+    "energyProduction": 99999,
+    "energyRate": 22222,
+    "dateStart": 333,
+    "dateEnd": 4444,
+    "pesoEquivalent": 55555
+  }
+}

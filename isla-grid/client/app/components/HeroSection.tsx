@@ -18,7 +18,7 @@ const HeroSection = () => (
         Introducing <span className="text-[#FC7019]">IslaGrid</span>
       </h1>
       <p className="mt-4 text-xl md:text-2xl max-w-3xl mx-auto text-shadow font-light">
-        A community-driven approach to harness the Philippines' renewable
+        A community-driven approach to harness the Philippines renewable
         energy, built by SparkPlug.
       </p>
       <a
