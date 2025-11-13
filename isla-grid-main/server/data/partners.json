@@ -1,0 +1,35 @@
+{
+  "partners": [
+    {
+      "id": 1,
+      "name": "MSpectrum, Inc.",
+      "description": "End-to-end solar solutions: rooftop solar for C&I, utility-scale EPC, operations & maintenance.",
+      "location": "Philippines",
+      "type": "Solar Solutions Provider"
+    },
+    {
+      "id": 2,
+      "name": "MGen Renewable Energy (MGreen)",
+      "description": "Large-scale solar development: power plants, solar farms, partner-investments in renewable energy.",
+      "location": "Philippines",
+      "type": "Renewable Energy Developer"
+    },
+    {
+      "id": 3,
+      "name": "Solar Philippines (SPNEC)",
+      "description": "Utility-scale solar farms and supply agreements, large solar zone developments.",
+      "location": "Philippines",
+      "type": "Solar Farm Developer"
+    },
+    {
+      "id": 4,
+      "name": "SUMEC",
+      "description": "Certified renewable energy partner providing solar installation and maintenance services.",
+      "location": "Philippines",
+      "type": "Solar Installer"
+    }
+  ],
+  "totalPartners": 4,
+  "region": "Philippines",
+  "lastUpdated": "2025-11-14"
+}

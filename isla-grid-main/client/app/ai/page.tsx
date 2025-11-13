@@ -25,10 +25,10 @@ import {
 import { Chat, CreateMessageDTO, Message } from "@/types/chatTypes";
 
 const SUGGESTED_PROMPTS = [
-  "Summarize how IslaGrid expands the net-metering program for communities.",
-  "What data do we need to generate a proposal for a river-based micro hydro plant?",
-  "Explain how revenue distribution works with NFC profit cards.",
-  "Outline the AI-Driven Energy Design Studio workflow from input to output.",
+  "Generate a personalized home energy proposal based on my profile.",
+  "What renewable energy sources are best for my area?",
+  "How much can I save with a solar system?",
+  "What's the implementation timeline for my home?",
 ];
 
 const AiPage = () => {
@@ -44,6 +44,11 @@ const AiPage = () => {
 
   const [currentConversationId, setCurrentConversationId] = useState("welcome");
   const [conversations, setConversations] = useState<Chat[]>([]);
+
+  // Gemini conversation history for context
+  const [conversationHistory, setConversationHistory] = useState<
+    Array<{ role: string; parts: Array<{ text: string }> }>
+  >([]);
 
   // loading conversations of the user
   useEffect(() => {
@@ -82,12 +87,12 @@ const AiPage = () => {
         if (userContext) {
           setUserContext(userContext);
           setShowOnboarding(false);
+          initializeGeminiContext(userContext);
         } else {
           setShowOnboarding(true);
         }
       } catch (error) {
         console.error("Failed to check onboarding status:", error);
-        // Default to showing onboarding on error
         setShowOnboarding(true);
       }
     };
@@ -111,33 +116,55 @@ const AiPage = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const updateConversationPreview = (
-    conversationId: string,
-    lastMessage: string
-  ) => {
-    console.log("update conversation preview called");
-    // setConversations((previous) => {
-    //   const existing = previous.find(
-    //     (conversation) => conversation.id === conversationId
-    //   );
-    //   const updatedConversation: ConversationPreview = existing
-    //     ? {
-    //         ...existing,
-    //         lastMessage,
-    //         updatedAt: "Just now",
-    //       }
-    //     : {
-    //         id: conversationId,
-    //         title: "New Conversation",
-    //         lastMessage,
-    //         updatedAt: "Just now",
-    //       };
+  // Initialize Gemini context with user data
+  const initializeGeminiContext = (context: OnboardingData) => {
+    const systemPrompt = `You are IslaBot, a specialized renewable energy consultant for the IslaGrid platform. You have the following user profile:
 
-    //   const withoutCurrent = previous.filter(
-    //     (conversation) => conversation.id !== conversationId
-    //   );
-    //   return [updatedConversation, ...withoutCurrent];
-    // });
+**User Context:**
+- **Location:** ${context.location}
+- **Monthly Income:** ₱${context.monthlyIncome.toLocaleString()}
+- **Appliances/Devices:** ${
+      context.appliances.length
+    } units (${context.appliances.join(", ")})
+- **Onboarded Date:** ${new Date().toLocaleDateString()}
+
+**Your Role:**
+You provide personalized, data-driven renewable energy solutions specifically tailored to this user's home energy needs. You:
+1. Understand their energy consumption patterns based on their appliances
+2. Recommend optimal renewable energy systems (Solar, Wind, Hydro, Biomass)
+3. Calculate accurate financial projections (ROI, payback periods, savings)
+4. Provide implementation timelines and next steps
+5. Answer questions about renewable energy technologies
+6. Suggest financing options based on their income
+
+**Important Guidelines:**
+- Always reference their specific context (location, income, appliances)
+- Use Philippine peso (₱) for all financial calculations
+- Assume electricity rate of ₱12.5/kWh unless stated otherwise
+- Be conversational but professional
+- Provide specific, actionable recommendations
+- Include calculations and assumptions in your responses
+- Consider local climate and resource availability for ${context.location}
+
+When generating proposals, structure responses in clear sections with markdown formatting.`;
+
+    setConversationHistory([
+      {
+        role: "user",
+        parts: [{ text: systemPrompt }],
+      },
+      {
+        role: "model",
+        parts: [
+          {
+            text:
+              "I understand my role. I'm ready to be your personalized renewable energy consultant based on your profile. I will provide tailored recommendations for your home in " +
+              context.location +
+              " based on your appliances and financial situation. What would you like to know about renewable energy solutions for your home?",
+          },
+        ],
+      },
+    ]);
   };
 
   const handleSelectConversation = (conversationId: string) => {
@@ -156,7 +183,7 @@ const AiPage = () => {
     const newConversation = await initializeChat(token);
     const defaultMessage: CreateMessageDTO = {
       content:
-        "Hello! I am IslaBot, your guide to the IslaGrid Meralco Community Energy Ecosystem. Ask me how your barangay can generate, distribute, and benefit from community-owned renewable power.",
+        "Hello! I am IslaBot, your personalized renewable energy consultant. I'm here to help you design the perfect home energy solution based on your location, income, and appliances. What would you like to know?",
       sender: "bot",
     };
     const updatedConversation = await pushMessageToChat(
@@ -190,31 +217,75 @@ const AiPage = () => {
     setConversations(newConversations);
   };
 
-  const simulateAssistantReply = (
-    prompt: string,
-    useSearch: boolean
-  ): ChatMessage => {
-    const trimmed = prompt.trim();
-    const topic = trimmed.length > 0 ? trimmed : "your request";
-    const snippet = topic.length > 80 ? `${topic.slice(0, 77)}...` : topic;
+  // Call Gemini API with context
+  // ...existing code...
 
-    const baseResponse = userContext
-      ? `Based on your energy profile in ${
-          userContext.location
-        } with monthly income of ₱${userContext.monthlyIncome.toLocaleString()} and ${
-          userContext.appliances.length
-        } appliances, here's my analysis regarding "${snippet}":\n\n`
-      : `Here's my recommendation regarding "${snippet}":\n\n`;
+  // Call Gemini API with context
+  const callGeminiAPI = async (userMessage: string): Promise<string> => {
+    try {
+      const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
 
-    const details = `1. Generation — assess solar, hydro, wind, or hybrid potential using the AI-Driven Energy Design Studio.\n2. Distribution — connect community-owned assets to Meralco's grid with smart metering for transparent exports.\n3. Benefit Sharing — route revenues into NFC profit cards so residents experience direct economic uplift.\n\nProvide location, resource data, demand profile, and community stakeholders if you want me to draft a tailored IslaGrid rollout.`;
+      if (!apiKey) {
+        throw new Error("Gemini API key not configured");
+      }
 
-    return {
-      id: `assistant-${Date.now()}`,
-      role: "assistant",
-      usedSearch: useSearch,
-      content: baseResponse + details,
-    };
+      // Add user message to history
+      const updatedHistory = [
+        ...conversationHistory,
+        {
+          role: "user",
+          parts: [{ text: userMessage }],
+        },
+      ];
+
+      const response = await fetch(
+        `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            contents: updatedHistory,
+            generationConfig: {
+              temperature: 0.7,
+              topK: 40,
+              topP: 0.95,
+              maxOutputTokens: 2048,
+            },
+          }),
+        }
+      );
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(
+          `API error: ${errorData.error?.message || response.statusText}`
+        );
+      }
+
+      const data = await response.json();
+      const assistantMessage =
+        data.candidates?.[0]?.content?.parts?.[0]?.text ||
+        "I couldn't generate a response. Please try again.";
+
+      // Update conversation history with assistant response
+      setConversationHistory([
+        ...updatedHistory,
+        {
+          role: "model",
+          parts: [{ text: assistantMessage }],
+        },
+      ]);
+
+      return assistantMessage;
+    } catch (error) {
+      console.error("Gemini API error:", error);
+      throw error;
+    }
   };
+
+  // ...existing code...
 
   const handleSendMessage = async () => {
     if (messageInput.trim().length === 0 || isLoading) {
@@ -241,40 +312,48 @@ const AiPage = () => {
     );
 
     const updatedChats = await listAllChatsOfUser(token);
-
     setConversations(updatedChats);
 
     setMessageInput("");
     setIsLoading(true);
 
-    const shouldUseSearch = webSearchEnabled;
+    try {
+      // Call Gemini API with user message
+      const assistantResponse = await callGeminiAPI(newMessageDTO.content);
 
-    window.setTimeout(
-      async () => {
-        const assistantMessage = simulateAssistantReply(
-          newMessageDTO.content,
-          shouldUseSearch
-        );
+      const formattedMessage: CreateMessageDTO = {
+        content: assistantResponse,
+        sender: "bot",
+      };
 
-        const formattedMessage: CreateMessageDTO = {
-          content: assistantMessage.content,
-          sender: "bot",
-        };
+      const updatedChat = await pushMessageToChat(
+        token,
+        conversationId,
+        formattedMessage
+      );
 
-        const updatedChat = await pushMessageToChat(
-          token,
-          conversationId,
-          formattedMessage
-        );
+      const updatedChats = await listAllChatsOfUser(token);
+      setConversations(updatedChats);
+    } catch (error) {
+      console.error("Error getting AI response:", error);
 
-        const updatedChats = await listAllChatsOfUser(token);
-        setConversations(updatedChats);
+      const errorMessage: CreateMessageDTO = {
+        content:
+          "I encountered an error processing your request. Please try again.",
+        sender: "bot",
+      };
 
-        // updateConversationPreview(conversationId, assistantMessage.content);
-        setIsLoading(false);
-      },
-      shouldUseSearch ? 1200 : 800
-    );
+      const updatedChat = await pushMessageToChat(
+        token,
+        conversationId,
+        errorMessage
+      );
+
+      const updatedChats = await listAllChatsOfUser(token);
+      setConversations(updatedChats);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleSuggestionPick = (suggestion: string) => {
@@ -288,9 +367,11 @@ const AiPage = () => {
         const response = await createUserContext(token, data);
         setUserContext(data);
         setShowOnboarding(false);
+        initializeGeminiContext(data);
       }
       setUserContext(data);
       setShowOnboarding(false);
+      initializeGeminiContext(data);
     } catch (error) {
       console.error("Error saving onboarding data:", error);
       alert("An error occurred. Please try again.");
@@ -343,20 +424,6 @@ const AiPage = () => {
             onToggleSidebar={() => setSidebarOpen((previous) => !previous)}
             actions={
               <div className="flex items-center gap-2 md:gap-4">
-                {/* Reset Button */}
-                {/* <button
-                  type="button"
-                  onClick={handleResetConversation}
-                  className="hidden sm:flex items-center gap-2 rounded-full border border-[#F2D8C3] px-3 py-1 text-xs font-semibold uppercase tracking-wide text-gray-600 transition hover:border-[#FC7019] hover:text-[#FC7019]"
-                >
-                  <RotateCcw className="h-3.5 w-3.5" /> Reset
-                </button> */}
-
-                {/* IslaGrid Trusted Badge */}
-                {/* <div className="hidden md:flex items-center gap-2 rounded-full border border-[#FC7019]/30 bg-[#FFF5EB] px-4 py-1 text-xs font-semibold uppercase tracking-wider text-[#FC7019]">
-                  <Sparkles className="h-3.5 w-3.5" /> IslaGrid Trusted
-                </div> */}
-
                 {/* Profile Dropdown */}
                 <div className="relative">
                   <button
@@ -377,7 +444,7 @@ const AiPage = () => {
                       />
 
                       {/* Dropdown */}
-                      <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-white/60 bg-white/95 shadow-xl ring-1 ring-black/5 z-40 overflow-hidden">
+                      <div className="absolute right-0 top-full mt-2 w-56 rounded-2xl border border-white/60 bg-white/95 shadow-xl ring-1 ring-black/5 overflow-hidden z-200">
                         {/* Profile Info */}
                         <div className="border-b border-gray-200 p-4">
                           {displayName && (

@@ -69,7 +69,7 @@ const ChatInput = ({
           </button>
         </div>
         <div className="flex items-center justify-between text-xs text-gray-500">
-          <button
+          {/* <button
             type="button"
             onClick={onToggleWebSearch}
             className={`flex items-center gap-2 rounded-full border px-3 py-1 transition ${
@@ -80,7 +80,7 @@ const ChatInput = ({
           >
             <Globe className="h-3.5 w-3.5" />
             Web search {webSearchEnabled ? "enabled" : "disabled"}
-          </button>
+          </button> */}
           <p className="text-right text-[11px] uppercase tracking-[0.2em]">
             Shift + Enter to add a line
           </p>
