@@ -17,7 +17,7 @@ const LoginPage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    if (state === "authenticated") router.push("/dashboard");
+    if (state === "authenticated") router.push("/ai");
     if (error) alert(error);
   }, [state, user]);
 

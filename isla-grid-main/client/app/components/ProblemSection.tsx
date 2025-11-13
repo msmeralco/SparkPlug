@@ -1,17 +1,50 @@
-const ProblemSection = () => (
-  <section id="problem" className="py-24 bg-[#FFFDFA]">
-    <div className="container mx-auto px-6">
-      <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-sm font-bold uppercase text-[#FC7019] tracking-widest">
-          The Problem
-        </h2>
-        <p className="mt-3 text-4xl md:text-5xl font-extrabold text-[#131B28]">
-          A Nation of Rich Resources, Sidelined.
-        </p>
-        <p className="mt-6 text-lg text-gray-700 leading-relaxed">
-          Despite the Philippines’ rich renewable energy potential, most households still rely on expensive, non-renewable power. Many Filipinos struggle with high electricity bills, frequent outages, and limited access to clean energy solutions that truly fit their needs and budgets.
-        </p>
-      </div>
+"use client";
+
+import { useLanguage } from "@/providers/language";
+
+const copy = {
+  en: {
+    title: "The Problem",
+    heading: "A Nation of Rich Resources, Sidelined.",
+    description: "Despite the Philippines' rich renewable energy potential, most households still rely on expensive, non-renewable power. Many Filipinos struggle with high electricity bills, frequent outages, and limited access to clean energy solutions that truly fit their needs and budgets.",
+    card1Title: "High Energy Costs",
+    card1Text: "Everyday appliance use and rising electricity rates make monthly bills harder to manage for Filipino families. IslaGrid helps you find cleaner, cheaper power options designed for your home",
+    card2Title: "Limited Access to Clean Energy",
+    card2Text: "Current net-metering programs mostly benefit private property owners. Renters and small homeowners are often left out of renewable energy opportunities",
+    card3Title: "Missed Home Potential",
+    card3Text: "Your home's sunlight, space, or local environment could be producing power and savings. IslaGrid helps you unlock your property's renewable potential and turn it into real value.",
+  },
+  tl: {
+    title: "Ang Problema",
+    heading: "Isang Bansa ng Mayamang Resources, Naisantabi.",
+    description: "Sa kabila ng mayamang renewable energy potential ng Pilipinas, karamihan ng mga tahanan ay umaasa pa rin sa mahal at hindi renewable na kuryente. Maraming Pilipino ang nahihirapan sa mataas na electricity bills, madalas na brownouts, at limitadong access sa clean energy solutions na tunay na swak sa kanilang pangangailangan at budget.",
+    card1Title: "Mataas na Gastos sa Kuryente",
+    card1Text: "Ang araw-araw na paggamit ng mga appliances at tumataas na electricity rates ay nagiging mas mahirap para sa mga pamilyang Pilipino. Tinutulungan ka ng IslaGrid na makahanap ng mas malinis at mas murang power options na dinisenyo para sa iyong tahanan",
+    card2Title: "Limitadong Access sa Clean Energy",
+    card2Text: "Ang kasalukuyang net-metering programs ay karamihan ay para lang sa mga may-ari ng private property. Ang mga umuupa at maliliit na homeowners ay madalas na hindi kasama sa mga renewable energy opportunities",
+    card3Title: "Nasasayang na Potensyal ng Tahanan",
+    card3Text: "Ang sikat ng araw, espasyo, o local environment ng iyong bahay ay maaaring gumawa ng kuryente at savings. Tinutulungan ka ng IslaGrid na i-unlock ang renewable potential ng iyong property at gawing tunay na halaga.",
+  },
+} as const;
+
+const ProblemSection = () => {
+  const { language } = useLanguage();
+  const t = copy[language];
+
+  return (
+    <section id="problem" className="py-24 bg-[#FFFDFA]">
+      <div className="container mx-auto px-6">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-sm font-bold uppercase text-[#FC7019] tracking-widest">
+            {t.title}
+          </h2>
+          <p className="mt-3 text-4xl md:text-5xl font-extrabold text-[#131B28]">
+            {t.heading}
+          </p>
+          <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+            {t.description}
+          </p>
+        </div>
       <div className="mt-16 grid md:grid-cols-3 gap-8">
         <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
           <div className="bg-red-100 text-red-600 w-12 h-12 rounded-full flex items-center justify-center">
@@ -24,11 +57,10 @@ const ProblemSection = () => (
             </svg>
           </div>
           <h3 className="mt-5 text-xl font-bold text-gray-900">
-            High Energy Costs
+            {t.card1Title}
           </h3>
           <p className="mt-2 text-gray-600">
-            Everyday appliance use and rising electricity rates make monthly bills harder to manage for Filipino families. <br /> <br />
-            IslaGrid helps you find cleaner, cheaper power options designed for your home
+            {t.card1Text}
           </p>
         </div>
         <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
@@ -47,10 +79,10 @@ const ProblemSection = () => (
             </svg>
           </div>
           <h3 className="mt-5 text-xl font-bold text-gray-900">
-            Limited Access to Clean Energy
+            {t.card2Title}
           </h3>
           <p className="mt-2 text-gray-600">
-            Current net-metering programs mostly benefit private property owners. <br /> <br /> Renters and small homeowners are often left out of renewable energy opportunities
+            {t.card2Text}
           </p>
         </div>
           <div className="bg-white p-8 rounded-xl shadow-lg border border-gray-100 transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
@@ -63,16 +95,14 @@ const ProblemSection = () => (
             </svg>
           </div>
           <h3 className="mt-5 text-xl font-bold text-gray-900">
-            Missed Home Potential
+            {t.card3Title}
           </h3>
           <p className="mt-2 text-gray-600">
-            Your home’s sunlight, space, or local environment could be producing power and savings. <br/> <br/>
-            IslaGrid helps you unlock your property’s renewable potential and turn it into real value.
+            {t.card3Text}
           </p>
         </div>
       </div>
     </div>
   </section>
-);
-
+);}
 export default ProblemSection;

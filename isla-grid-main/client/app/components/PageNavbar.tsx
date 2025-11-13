@@ -1,8 +1,30 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useLanguage } from '@/providers/language';
+
+const copy = {
+  en: {
+    problem: 'The Problem',
+    solution: 'Solution',
+    about: 'About Us',
+    features: 'How It Works',
+    cta: 'Get Started',
+    toggleLabel: 'Toggle menu',
+  },
+  tl: {
+    problem: 'Ang Problema',
+    solution: 'Solusyon',
+    about: 'Tungkol Sa Amin',
+    features: 'Paano Ito Gumagana',
+    cta: 'Magsimula',
+    toggleLabel: 'Buksan ang menu',
+  },
+} as const;
 
 const PageNavbar = () => {
+  const { language } = useLanguage();
+  const t = copy[language];
   const [isOpen, setIsOpen] = useState(false);
   const [hasScrolled, setHasScrolled] = useState(false);
   const linkColorClass = hasScrolled
@@ -46,31 +68,31 @@ const PageNavbar = () => {
                href="#problem"
                className={`${linkColorClass} font-medium whitespace-nowrap transition-colors duration-200`}
              >
-               The Problem
+               {t.problem}
              </a>
              <a
                href="#solution"
                className={`${linkColorClass} font-medium whitespace-nowrap transition-colors duration-200`}
              >
-               Solution
+               {t.solution}
              </a>
              <a
                href="#about"
                className={`${linkColorClass} font-medium whitespace-nowrap transition-colors duration-200`}
              >
-               About Us
+               {t.about}
              </a>
              <a
                href="#features"
                className={`${linkColorClass} font-medium whitespace-nowrap transition-colors duration-200`}
              >
-               How It Works
+               {t.features}
              </a>
              <a
                href="#contact"
                className="bg-[#FC7019] text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:brightness-95 transition-all shrink-0 whitespace-nowrap"
              >
-               Get Started
+               {t.cta}
              </a>
            </div>
 
@@ -80,7 +102,7 @@ const PageNavbar = () => {
             className={`md:hidden focus:outline-none transition-colors duration-200 ${
               hasScrolled ? 'text-gray-700 hover:text-[#FC7019]' : 'text-white hover:text-white/80'
             }`}
-            aria-label="Toggle menu"
+            aria-label={t.toggleLabel}
           >
             {isOpen ? (
               <svg
@@ -128,35 +150,35 @@ const PageNavbar = () => {
               onClick={closeMenu}
               className={`${linkColorClass} font-medium py-2 transition-colors duration-200`}
             >
-              The Problem
+              {t.problem}
             </a>
             <a
               href="#solution"
               onClick={closeMenu}
               className={`${linkColorClass} font-medium py-2 transition-colors duration-200`}
             >
-              IslaGrid Solution
+              {t.solution}
             </a>
             <a
               href="#about"
               onClick={closeMenu}
               className={`${linkColorClass} font-medium py-2 transition-colors duration-200`}
             >
-              About Us
+              {t.about}
             </a>
             <a
               href="#features"
               onClick={closeMenu}
               className={`${linkColorClass} font-medium py-2 transition-colors duration-200`}
             >
-              How It Works
+              {t.features}
             </a>
             <a
               href="#contact"
               onClick={closeMenu}
               className="bg-[#FC7019] text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:brightness-95 transition-all text-center"
             >
-              Get Started
+              {t.cta}
             </a>
           </div>
         </div>
