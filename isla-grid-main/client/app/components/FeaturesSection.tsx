@@ -3,16 +3,14 @@
 import {
   ArrowRight,
   Building2,
-  Coffee,
   Globe2,
   MapPin,
   Sparkles,
-  Stethoscope,
-  Store,
   Users,
   Wallet,
   Zap,
 } from "lucide-react";
+import Image from "next/image";
 import ProposalForm from "./ProposalForm";
 import { useLanguage } from "@/providers/language";
 
@@ -58,9 +56,20 @@ const copy = {
     userLabel: "You",
     aiResponse1: "Great question! During monsoon season, wind turbines significantly outperform solar panels. Wind speeds increase 50-100%, while solar output drops ~30%. Your hybrid system balances both sources automatically, maintaining steady energy generation year-round.",
     sendButton: "Send",
-    step4Badge: "Step 4: Merchant Network",
-    step4Title: "Local Merchant Partnership",
-    step4Description: "We partner with local SMEs so residents can spend energy credits at nearby shops, markets, and service providers — supporting local commerce while increasing utility for IslaGrid credits.",
+    step4Badge: "Step 4: Partner Network",
+    step4Title: "Meralco Partner Ecosystem",
+    step4Description: "We collaborate with Meralco's trusted renewable energy partners to ensure professional installation, maintenance, and support for your community's solar infrastructure.",
+    partner1Name: "MSpectrum, Inc.",
+    partner1Description: "End-to-end solar solutions: rooftop solar for C&I, utility-scale EPC, operations & maintenance.",
+    partner1Location: "Philippines",
+    partner2Name: "MGen Renewable Energy (MGreen)",
+    partner2Description: "Large-scale solar development: power plants, solar farms, partner-investments in renewable energy.",
+    partner2Location: "Philippines",
+    partner3Name: "Solar Philippines (SPNEC)",
+    partner3Description: "Utility-scale solar farms and supply agreements, large solar zone developments.",
+    partner3Location: "Philippines",
+    partner4Name: "And Many More...",
+    partner4Description: "We work with additional certified partners including SUMEC and local installers across the Philippines.",
   },
   tl: {
     title: "Paano Ito Gumagana",
@@ -103,9 +112,20 @@ const copy = {
     userLabel: "Ikaw",
     aiResponse1: "Magandang tanong! Sa panahon ng monsoon, mas nangingibabaw ang wind turbines kaysa solar panels. Tumataas ang wind speeds ng 50-100%, habang bumababa ang solar output ng ~30%. Awtomatikong binabalanse ng inyong hybrid system ang dalawang sources, na nagpapanatili ng steady energy generation buong taon.",
     sendButton: "Ipadala",
-    step4Badge: "Hakbang 4: Merchant Network",
-    step4Title: "Local Merchant Partnership",
-    step4Description: "Nakikipagtulungan kami sa mga lokal na SME upang magamit ng mga residente ang energy credits sa malapit na tindahan, palengke, at service providers — sumusuporta sa lokal na negosyo habang pinapataas ang utility ng IslaGrid credits.",
+    step4Badge: "Hakbang 4: Partner Network",
+    step4Title: "Meralco Partner Ecosystem",
+    step4Description: "Nakikipagtulungan kami sa mga pinagkakatiwalaang renewable energy partners ng Meralco upang masiguro ang propesyonal na pag-install, maintenance, at suporta para sa solar infrastructure ng inyong komunidad.",
+    partner1Name: "MSpectrum, Inc.",
+    partner1Description: "Kumpleto solar solutions: rooftop solar para sa C&I, utility-scale EPC, operations at maintenance.",
+    partner1Location: "Pilipinas",
+    partner2Name: "MGen Renewable Energy (MGreen)",
+    partner2Description: "Malalaking solar development: power plants, solar farms, partner-investments sa renewable energy.",
+    partner2Location: "Pilipinas",
+    partner3Name: "Solar Philippines (SPNEC)",
+    partner3Description: "Utility-scale solar farms at supply agreements, malalaking solar zone developments.",
+    partner3Location: "Pilipinas",
+    partner4Name: "At Marami Pang Iba...",
+    partner4Description: "Nakikipagtulungan kami sa mga karagdagang certified partners kasama ang SUMEC at lokal na installers sa buong Pilipinas.",
   },
 } as const;
 
@@ -318,47 +338,6 @@ const FeaturesSection = () => {
       <div className="mt-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
         <div className="lg:w-1/2 lg:pr-10">
           <span className="inline-flex items-center px-4 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">
-            Step 3: Consult & Optimize
-          </span>
-          <h3 className="mt-4 text-3xl font-extrabold text-[#131B28]">
-            Personal Energy Consultant Chatbot
-          </h3>
-          <p className="mt-4 text-lg text-gray-700">
-            Chat with our AI energy consultant to get personalized answers based on your community&apos;s unique profile and proposal. Ask questions, get optimization tips, and receive expert guidance on maximizing energy generation and ROI.
-          </p>
-          
-          <div className="mt-6 space-y-3">
-            <p className="font-semibold text-[#131B28]">Common Questions Answered:</p>
-            <ul className="space-y-2 text-gray-700">
-              <li className="flex gap-2">
-                <span className="text-[#FC7019]">💬</span>
-                <span>&quot;Which renewable source is best for our barangay?&quot;</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-[#FC7019]">💬</span>
-                <span>&quot;How can we maximize energy output?&quot;</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-[#FC7019]">💬</span>
-                <span>&quot;What&apos;s the expected payback period?&quot;</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-[#FC7019]">💬</span>
-                <span>&quot;How do we maintain the system efficiently?&quot;</span>
-              </li>
-              <li className="flex gap-2">
-                <span className="text-[#FC7019]">💬</span>
-                <span>&quot;What government incentives are available?&quot;</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      {/* STEP 3: Consult & Optimize */}
-      <div className="mt-20 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-        <div className="lg:w-1/2 lg:pr-10">
-          <span className="inline-flex items-center px-4 py-1 bg-purple-100 text-purple-800 text-sm font-medium rounded-full">
             {t.step3Badge}
           </span>
           <h3 className="mt-4 text-3xl font-extrabold text-[#131B28]">
@@ -450,36 +429,6 @@ const FeaturesSection = () => {
                   </button>
                 </div>
               </div>
-
-              {/* Suggested Questions */}
-              <div className="mt-4 pt-4 border-t border-gray-200">
-                <p className="text-xs font-semibold text-gray-600 mb-3">Suggested Questions:</p>
-                <div className="space-y-2">
-                  <button className="w-full text-left text-sm bg-white border border-gray-300 rounded-lg p-2 hover:bg-gray-50 transition-colors text-gray-700">
-                    💡 How to maximize energy output?
-                  </button>
-                  <button className="w-full text-left text-sm bg-white border border-gray-300 rounded-lg p-2 hover:bg-gray-50 transition-colors text-gray-700">
-                    💰 What&apos;s the payback period?
-                  </button>
-                  <button className="w-full text-left text-sm bg-white border border-gray-300 rounded-lg p-2 hover:bg-gray-50 transition-colors text-gray-700">
-                    🎯 Maintenance requirements?
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Input Field */}
-            <div className="mt-4 border-t border-gray-200 pt-4">
-              <div className="flex gap-2">
-                <input
-                  type="text"
-                  placeholder="Ask your question..."
-                  className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#FC7019]"
-                />
-                <button className="bg-[#FC7019] hover:bg-orange-600 text-white px-4 py-2 rounded-lg font-semibold transition-colors">
-                  Send
-                </button>
-              </div>
             </div>
 
             {/* Input Field */}
@@ -499,58 +448,107 @@ const FeaturesSection = () => {
         </div>
       </div>
 
-  {/* STEP 4: Merchant Network (Partners) */}
+  {/* STEP 4: Partner Network */}
       <div className="mt-20">
         <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-flex items-center px-4 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
+          <span className="inline-flex items-center px-4 py-1 bg-orange-100 text-orange-800 text-sm font-medium rounded-full">
             {t.step4Badge}
           </span>
           <h3 className="mt-4 text-3xl font-extrabold text-[#131B28]">{t.step4Title}</h3>
           <p className="mt-4 text-lg text-gray-700">{t.step4Description}</p>
         </div>
-        <div className="mt-8 flex flex-wrap justify-center items-center gap-6">
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-6 w-44 h-44 flex flex-col justify-center items-center text-center">
-            <Store className="h-10 w-10 text-[#FC7019] mb-3" />
-            <p className="text-gray-900 font-semibold">Barangay Co-op Mart</p>
-            <p className="text-xs text-gray-500 mt-1">Everyday essentials paid with IslaGrid credits</p>
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+          {/* Partner 1: MSpectrum */}
+          <div className="bg-white border-2 border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-[#FC7019] transition-all duration-300 flex flex-col">
+            <div className="flex items-center justify-center h-20 mb-4 mx-auto">
+              <Image
+                src="/mspectrum-logo.png"
+                alt="MSpectrum Logo"
+                width={160}
+                height={80}
+                className="object-contain"
+              />
+            </div>
+            <h4 className="text-lg font-bold text-[#131B28] text-center mb-2">{t.partner1Name}</h4>
+            <div className="flex items-center justify-center gap-1 text-xs text-gray-500 mb-3">
+              <MapPin className="h-3 w-3" />
+              <span>{t.partner1Location}</span>
+            </div>
+            <p className="text-sm text-gray-600 text-center grow">{t.partner1Description}</p>
+            <a 
+              href="https://www.mspectrum.com.ph/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center justify-center gap-1 text-sm font-semibold text-[#FC7019] hover:text-orange-600 transition-colors"
+            >
+              <span>Learn More</span>
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-6 w-44 h-44 flex flex-col justify-center items-center text-center">
-            <Coffee className="h-10 w-10 text-[#FC7019] mb-3" />
-            <p className="text-gray-900 font-semibold">Coastal Brew Collective</p>
-            <p className="text-xs text-gray-500 mt-1">Neighborhood café honoring clean-energy rewards</p>
-          </div>
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-6 w-44 h-44 flex flex-col justify-center items-center text-center">
-            <Stethoscope className="h-10 w-10 text-[#FC7019] mb-3" />
-            <p className="text-gray-900 font-semibold">HealthLink Pharmacy Coop</p>
-            <p className="text-xs text-gray-500 mt-1">Affordable wellness supported by local energy credits</p>
-          </div>
-        </div>
-      </div>
 
-  {/* STEP 4: Merchant Network (Partners) */}
-      <div className="mt-20">
-        <div className="max-w-4xl mx-auto text-center">
-          <span className="inline-flex items-center px-4 py-1 bg-green-100 text-green-800 text-sm font-medium rounded-full">
-            Step 4: Merchant Network
-          </span>
-          <h3 className="mt-4 text-3xl font-extrabold text-[#131B28]">Local Merchant Partnership</h3>
-          <p className="mt-4 text-lg text-gray-700">We partner with local SMEs so residents can spend energy credits at nearby shops, markets, and service providers — supporting local commerce while increasing utility for IslaGrid credits.</p>
-        </div>
-        <div className="mt-8 flex flex-wrap justify-center items-center gap-6">
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-6 w-44 h-44 flex flex-col justify-center items-center text-center">
-            <Store className="h-10 w-10 text-[#FC7019] mb-3" />
-            <p className="text-gray-900 font-semibold">Barangay Co-op Mart</p>
-            <p className="text-xs text-gray-500 mt-1">Everyday essentials paid with IslaGrid credits</p>
+          {/* Partner 2: MGen Renewable Energy */}
+          <div className="bg-white border-2 border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-[#FC7019] transition-all duration-300 flex flex-col">
+            <div className="flex items-center justify-center h-20 mb-4 mx-auto">
+              <Image
+                src="/mgen-logo.png"
+                alt="MGen Logo"
+                width={160}
+                height={80}
+                className="object-contain"
+              />
+            </div>
+            <h4 className="text-lg font-bold text-[#131B28] text-center mb-2">{t.partner2Name}</h4>
+            <div className="flex items-center justify-center gap-1 text-xs text-gray-500 mb-3">
+              <MapPin className="h-3 w-3" />
+              <span>{t.partner2Location}</span>
+            </div>
+            <p className="text-sm text-gray-600 text-center grow">{t.partner2Description}</p>
+            <a 
+              href="https://www.mgen.com.ph/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center justify-center gap-1 text-sm font-semibold text-[#FC7019] hover:text-orange-600 transition-colors"
+            >
+              <span>Learn More</span>
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-6 w-44 h-44 flex flex-col justify-center items-center text-center">
-            <Coffee className="h-10 w-10 text-[#FC7019] mb-3" />
-            <p className="text-gray-900 font-semibold">Coastal Brew Collective</p>
-            <p className="text-xs text-gray-500 mt-1">Neighborhood café honoring clean-energy rewards</p>
+
+          {/* Partner 3: Solar Philippines */}
+          <div className="bg-white border-2 border-gray-200 rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-[#FC7019] transition-all duration-300 flex flex-col">
+            <div className="flex items-center justify-center h-20 mb-4 mx-auto">
+              <Image
+                src="/solar-philippines-logo.png"
+                alt="Solar Philippines Logo"
+                width={160}
+                height={80}
+                className="object-contain"
+              />
+            </div>
+            <h4 className="text-lg font-bold text-[#131B28] text-center mb-2">{t.partner3Name}</h4>
+            <div className="flex items-center justify-center gap-1 text-xs text-gray-500 mb-3">
+              <MapPin className="h-3 w-3" />
+              <span>{t.partner3Location}</span>
+            </div>
+            <p className="text-sm text-gray-600 text-center grow">{t.partner3Description}</p>
+            <a 
+              href="https://www.solarphilippines.ph/" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center justify-center gap-1 text-sm font-semibold text-[#FC7019] hover:text-orange-600 transition-colors"
+            >
+              <span>Learn More</span>
+              <ArrowRight className="h-4 w-4" />
+            </a>
           </div>
-          <div className="bg-white border border-gray-200 rounded-2xl shadow-md p-6 w-44 h-44 flex flex-col justify-center items-center text-center">
-            <Stethoscope className="h-10 w-10 text-[#FC7019] mb-3" />
-            <p className="text-gray-900 font-semibold">HealthLink Pharmacy Coop</p>
-            <p className="text-xs text-gray-500 mt-1">Affordable wellness supported by local energy credits</p>
+
+          {/* Partner 4: And More */}
+          <div className="bg-linear-to-br from-gray-50 to-gray-100 border-2 border-dashed border-gray-300 rounded-xl shadow-lg p-6 hover:shadow-xl hover:border-[#FC7019] transition-all duration-300 flex flex-col">
+            <div className="flex items-center justify-center w-16 h-16 rounded-full bg-linear-to-br from-gray-400 to-gray-500 mb-4 mx-auto">
+              <Building2 className="h-8 w-8 text-white" />
+            </div>
+            <h4 className="text-lg font-bold text-[#131B28] text-center mb-2">{t.partner4Name}</h4>
+            <p className="text-sm text-gray-600 text-center grow mt-6">{t.partner4Description}</p>
           </div>
         </div>
       </div>

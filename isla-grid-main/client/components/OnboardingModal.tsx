@@ -10,7 +10,9 @@ import {
   Plus,
   AlertCircle,
   CheckCircle2,
+  ChevronDown,
 } from "lucide-react";
+import { provinces } from "@/lib/philippineProvinces";
 
 export interface ApplianceUsage {
   name: string;
@@ -67,6 +69,8 @@ const OnboardingModal = ({
   });
   const [errors, setErrors] = useState<Record<string, string | undefined>>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [locationDropdownOpen, setLocationDropdownOpen] = useState(false);
+  const [locationSearch, setLocationSearch] = useState("");
 
   if (!isOpen) return null;
 
@@ -79,15 +83,16 @@ const OnboardingModal = ({
     "complete",
   ];
   const currentStepIndex = steps.indexOf(step);
-  const progress = ((currentStepIndex + 1) / steps.length) * 100;
+
+  // Filter provinces based on search
+  const filteredProvinces = provinces.filter((province) =>
+    province.toLowerCase().includes(locationSearch.toLowerCase())
+  );
 
   // Validation functions
   const validateLocation = (value: string): string | null => {
-    if (!value.trim()) return "Location is required";
-    if (value.trim().length < 3)
-      return "Location must be at least 3 characters";
-    if (value.trim().length > 100)
-      return "Location must be less than 100 characters";
+    if (!value.trim()) return "Province is required";
+    if (!provinces.includes(value)) return "Please select a valid province";
     return null;
   };
 
@@ -140,10 +145,13 @@ const OnboardingModal = ({
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleLocationChange = (value: string) => {
-    setFormData({ ...formData, location: value });
+  const handleLocationSelect = (province: string) => {
+    setFormData({ ...formData, location: province });
+    setLocationDropdownOpen(false);
+    setLocationSearch("");
+
     if (touched.location) {
-      const error = validateLocation(value);
+      const error = validateLocation(province);
       setErrors((prev) => ({
         ...prev,
         location: error || undefined,
@@ -379,28 +387,93 @@ const OnboardingModal = ({
                 Where are you located?
               </h2>
               <p className="mt-2 text-gray-600">
-                This helps us identify available renewable resources in your
-                area
+                Select your province to identify renewable energy potential
               </p>
             </div>
 
             <div className="space-y-3">
               <div>
                 <label className="block text-sm font-semibold text-[#131B28] mb-2">
-                  Location / Address <span className="text-red-500">*</span>
+                  Province <span className="text-red-500">*</span>
                 </label>
-                <input
-                  type="text"
-                  placeholder="e.g., Barangay San Juan, Iloilo City"
-                  value={formData.location}
-                  onChange={(e) => handleLocationChange(e.target.value)}
-                  onBlur={() => handleFieldBlur("location")}
-                  className={`w-full rounded-lg border px-4 py-3 text-gray-900 placeholder-gray-400 transition focus:outline-none focus:ring-2 ${
-                    errors.location
-                      ? "border-red-500 focus:ring-red-200"
-                      : "border-gray-300 focus:border-[#FC7019] focus:ring-[#FC7019]/20"
-                  }`}
-                />
+
+                {/* Province Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() =>
+                      setLocationDropdownOpen(!locationDropdownOpen)
+                    }
+                    onBlur={() => handleFieldBlur("location")}
+                    className={`w-full rounded-lg border px-4 py-3 text-left text-gray-900 transition focus:outline-none focus:ring-2 flex items-center justify-between ${
+                      errors.location
+                        ? "border-red-500 focus:ring-red-200"
+                        : "border-gray-300 focus:border-[#FC7019] focus:ring-[#FC7019]/20"
+                    }`}
+                  >
+                    <span
+                      className={
+                        formData.location
+                          ? "text-gray-900 font-medium"
+                          : "text-gray-400"
+                      }
+                    >
+                      {formData.location || "Select a province..."}
+                    </span>
+                    <ChevronDown
+                      className={`h-4 w-4 text-gray-600 transition-transform ${
+                        locationDropdownOpen ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Dropdown Menu */}
+                  {locationDropdownOpen && (
+                    <>
+                      {/* Backdrop */}
+                      <div
+                        className="fixed inset-0 z-10"
+                        onClick={() => setLocationDropdownOpen(false)}
+                      />
+
+                      {/* Dropdown Content */}
+                      <div className="absolute top-full left-0 right-0 mt-2 bg-white border border-gray-300 rounded-lg shadow-lg z-20 max-h-64 overflow-hidden flex flex-col">
+                        {/* Search Input */}
+                        <input
+                          type="text"
+                          placeholder="Search provinces..."
+                          value={locationSearch}
+                          onChange={(e) => setLocationSearch(e.target.value)}
+                          className="sticky top-0 px-4 py-2 border-b border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#FC7019]/20 text-sm"
+                          autoFocus
+                        />
+
+                        {/* Province Options */}
+                        <div className="overflow-y-auto">
+                          {filteredProvinces.length > 0 ? (
+                            filteredProvinces.map((province) => (
+                              <button
+                                key={province}
+                                onClick={() => handleLocationSelect(province)}
+                                className={`w-full text-left px-4 py-2.5 text-sm transition-colors hover:bg-[#FC7019]/10 hover:text-[#FC7019] ${
+                                  formData.location === province
+                                    ? "bg-[#FC7019]/20 text-[#FC7019] font-semibold"
+                                    : "text-gray-700"
+                                }`}
+                              >
+                                {province}
+                              </button>
+                            ))
+                          ) : (
+                            <div className="px-4 py-6 text-center text-sm text-gray-500">
+                              No provinces found
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </>
+                  )}
+                </div>
+
                 {errors.location && (
                   <div className="mt-2 flex gap-2 text-sm text-red-600">
                     <AlertCircle className="h-4 w-4 flex-shrink-0 mt-0.5" />
@@ -412,8 +485,9 @@ const OnboardingModal = ({
               <div className="rounded-lg bg-blue-50 p-4 text-sm text-blue-900">
                 <p className="font-semibold mb-1">💡 Why we ask:</p>
                 <p>
-                  Location helps us assess solar radiation, wind patterns, and
-                  hydro potential specific to your barangay.
+                  Your province helps us assess solar radiation, wind patterns,
+                  and hydro potential specific to your area for optimal energy
+                  solutions.
                 </p>
               </div>
             </div>
@@ -770,7 +844,7 @@ const OnboardingModal = ({
                 <div className="flex items-start justify-between">
                   <div>
                     <p className="text-xs font-semibold text-gray-600">
-                      📍 Location
+                      📍 Province
                     </p>
                     <p className="mt-1 text-sm font-medium text-[#131B28]">
                       {formData.location}
@@ -903,7 +977,7 @@ const OnboardingModal = ({
 
             <div className="rounded-lg bg-gradient-to-br from-[#FFF5EB] to-orange-50 p-6 text-left space-y-4 border border-orange-200">
               <p className="text-sm text-gray-700">
-                <span className="font-semibold">✓</span> Location data saved
+                <span className="font-semibold">✓</span> Province selected
               </p>
               <p className="text-sm text-gray-700">
                 <span className="font-semibold">✓</span> Financial profile
@@ -920,7 +994,7 @@ const OnboardingModal = ({
                 <span className="font-semibold">Next:</span> IslaBot will now
                 provide personalized energy recommendations and help you
                 optimize your consumption to reduce costs and maximize
-                sustainability.
+                sustainability in your province.
               </p>
             </div>
 

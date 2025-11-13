@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { use, useEffect, useMemo, useState } from "react";
 import { RotateCcw, Sparkles, LogOut } from "lucide-react";
 import Link from "next/link";
 import ChatSidebar from "./components/ChatSidebar";
@@ -12,13 +12,17 @@ import type { ChatMessage, ConversationPreview } from "./components/types";
 import UserRequired from "@/components/routeGuards/UserRequired";
 import { useAuth } from "@/providers/authentication";
 import { FaRegUserCircle } from "react-icons/fa";
-
-const DEFAULT_ASSISTANT_MESSAGE: ChatMessage = {
-  id: "assistant-welcome",
-  role: "assistant",
-  content:
-    "Hello! I am IslaBot, your guide to the IslaGrid Meralco Community Energy Ecosystem. Ask me how your barangay can generate, distribute, and benefit from community-owned renewable power.",
-};
+import {
+  createUserContext,
+  getUserContext,
+} from "@/lib/apiEndpoints/userContextsEndpoints";
+import {
+  deleteChat,
+  initializeChat,
+  listAllChatsOfUser,
+  pushMessageToChat,
+} from "@/lib/apiEndpoints/chatEndpoints";
+import { Chat, CreateMessageDTO, Message } from "@/types/chatTypes";
 
 const SUGGESTED_PROMPTS = [
   "Summarize how IslaGrid expands the net-metering program for communities.",
@@ -27,36 +31,41 @@ const SUGGESTED_PROMPTS = [
   "Outline the AI-Driven Energy Design Studio workflow from input to output.",
 ];
 
-type ConversationState = Record<string, ChatMessage[]>;
-
 const AiPage = () => {
-  const { user, state, logout } = useAuth();
+  const { user, logout, token } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [profileOpen, setProfileOpen] = useState(false);
   const [webSearchEnabled, setWebSearchEnabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [onboardingLoading, setOnboardingLoading] = useState(false);
-  const [messageInput, setMessageInput] = useState("");
-  const [currentConversationId, setCurrentConversationId] = useState("welcome");
   const [showOnboarding, setShowOnboarding] = useState(true);
+  const [messageInput, setMessageInput] = useState("");
   const [userContext, setUserContext] = useState<OnboardingData | null>(null);
-  const [conversations, setConversations] = useState<ConversationPreview[]>([
-    {
-      id: "welcome",
-      title: "Fresh Chat",
-      lastMessage: "Ask IslaBot how IslaGrid powers communities.",
-      updatedAt: "Just now",
-      pinned: true,
-    },
-  ]);
-  const [messagesByConversation, setMessagesByConversation] =
-    useState<ConversationState>({
-      welcome: [DEFAULT_ASSISTANT_MESSAGE],
-    });
 
-  const currentMessages = useMemo(() => {
-    return messagesByConversation[currentConversationId] ?? [];
-  }, [messagesByConversation, currentConversationId]);
+  const [currentConversationId, setCurrentConversationId] = useState("welcome");
+  const [conversations, setConversations] = useState<Chat[]>([]);
+
+  // loading conversations of the user
+  useEffect(() => {
+    if (token) {
+      const fetchConversations = async () => {
+        try {
+          const chats = await listAllChatsOfUser(token);
+
+          if (chats.length === 0) {
+            await handleCreateConversation();
+          } else {
+            setConversations(chats);
+            setCurrentConversationId(chats[0].chatId);
+          }
+        } catch (error) {
+          console.error("Error fetching conversations:", error);
+        }
+      };
+
+      fetchConversations();
+    }
+  }, [token]);
 
   const displayName =
     user?.displayName || user?.email?.split("@")[0] || "Your Account";
@@ -66,15 +75,14 @@ const AiPage = () => {
   useEffect(() => {
     const checkOnboardingStatus = async () => {
       try {
-        const response = await fetch("/api/user/context");
-        if (response.ok) {
-          const data = await response.json();
-          if (data.contextValue) {
-            setUserContext(data.contextValue);
-            setShowOnboarding(false);
-          }
-        } else if (response.status === 404) {
-          // User context doesn't exist, show onboarding
+        if (!token) {
+          throw new Error("No token found");
+        }
+        const userContext = await getUserContext(token);
+        if (userContext) {
+          setUserContext(userContext);
+          setShowOnboarding(false);
+        } else {
           setShowOnboarding(true);
         }
       } catch (error) {
@@ -107,28 +115,29 @@ const AiPage = () => {
     conversationId: string,
     lastMessage: string
   ) => {
-    setConversations((previous) => {
-      const existing = previous.find(
-        (conversation) => conversation.id === conversationId
-      );
-      const updatedConversation: ConversationPreview = existing
-        ? {
-            ...existing,
-            lastMessage,
-            updatedAt: "Just now",
-          }
-        : {
-            id: conversationId,
-            title: "New Conversation",
-            lastMessage,
-            updatedAt: "Just now",
-          };
+    console.log("update conversation preview called");
+    // setConversations((previous) => {
+    //   const existing = previous.find(
+    //     (conversation) => conversation.id === conversationId
+    //   );
+    //   const updatedConversation: ConversationPreview = existing
+    //     ? {
+    //         ...existing,
+    //         lastMessage,
+    //         updatedAt: "Just now",
+    //       }
+    //     : {
+    //         id: conversationId,
+    //         title: "New Conversation",
+    //         lastMessage,
+    //         updatedAt: "Just now",
+    //       };
 
-      const withoutCurrent = previous.filter(
-        (conversation) => conversation.id !== conversationId
-      );
-      return [updatedConversation, ...withoutCurrent];
-    });
+    //   const withoutCurrent = previous.filter(
+    //     (conversation) => conversation.id !== conversationId
+    //   );
+    //   return [updatedConversation, ...withoutCurrent];
+    // });
   };
 
   const handleSelectConversation = (conversationId: string) => {
@@ -138,71 +147,47 @@ const AiPage = () => {
     }
   };
 
-  const handleCreateConversation = () => {
-    const newId = `conversation-${Date.now()}`;
-    const newPreview: ConversationPreview = {
-      id: newId,
-      title: "Untitled Chat",
-      lastMessage: "Start planning your community energy project.",
-      updatedAt: "Just now",
-    };
+  const handleCreateConversation = async () => {
+    if (!token) {
+      alert("Please log in to create a new conversation.");
+      return;
+    }
 
-    setConversations((previous) => [newPreview, ...previous]);
-    setMessagesByConversation((previous) => ({
-      ...previous,
-      [newId]: [DEFAULT_ASSISTANT_MESSAGE],
-    }));
-    setCurrentConversationId(newId);
+    const newConversation = await initializeChat(token);
+    const defaultMessage: CreateMessageDTO = {
+      content:
+        "Hello! I am IslaBot, your guide to the IslaGrid Meralco Community Energy Ecosystem. Ask me how your barangay can generate, distribute, and benefit from community-owned renewable power.",
+      sender: "bot",
+    };
+    const updatedConversation = await pushMessageToChat(
+      token,
+      newConversation.chatId,
+      defaultMessage
+    );
+
+    const newConversations = await listAllChatsOfUser(token);
+
+    setConversations(newConversations);
+    setCurrentConversationId(newConversation.chatId);
     setMessageInput("");
     if (typeof window !== "undefined" && window.innerWidth < 1024) {
       setSidebarOpen(false);
     }
   };
 
-  const handleDeleteConversation = (conversationId: string) => {
-    const remainingPreviews = conversations.filter(
-      (conversation) => conversation.id !== conversationId
-    );
+  const handleDeleteConversation = async (conversationId: string) => {
+    if (!token) {
+      alert("Please log in to delete a conversation.");
+      return;
+    }
 
-    const fallbackConversations =
-      remainingPreviews.length > 0
-        ? remainingPreviews
-        : [
-            {
-              id: "welcome",
-              title: "Fresh Chat",
-              lastMessage: "Ask IslaBot how IslaGrid powers communities.",
-              updatedAt: "Just now",
-              pinned: true,
-            },
-          ];
+    const deletedConversation = await deleteChat(token, conversationId);
 
-    setConversations(fallbackConversations);
+    const newConversations = await listAllChatsOfUser(token);
+    setCurrentConversationId(newConversations[0].chatId);
+    setMessageInput("");
 
-    setMessagesByConversation((previous) => {
-      const { [conversationId]: _removed, ...rest } = previous;
-      let newMessagesByConversation;
-      if (Object.keys(rest).length > 0) {
-        newMessagesByConversation = rest;
-      } else {
-        newMessagesByConversation = {
-          welcome: [DEFAULT_ASSISTANT_MESSAGE],
-        };
-      }
-
-      if (conversationId === currentConversationId) {
-        const fallbackId =
-          fallbackConversations.find((conv) =>
-            newMessagesByConversation.hasOwnProperty(conv.id)
-          )?.id ??
-          Object.keys(newMessagesByConversation)[0] ??
-          "welcome";
-        setCurrentConversationId(fallbackId);
-        setIsLoading(false);
-      }
-
-      return newMessagesByConversation;
-    });
+    setConversations(newConversations);
   };
 
   const simulateAssistantReply = (
@@ -231,47 +216,61 @@ const AiPage = () => {
     };
   };
 
-  const handleSendMessage = () => {
+  const handleSendMessage = async () => {
     if (messageInput.trim().length === 0 || isLoading) {
       return;
     }
+    console.log("messageInput", messageInput);
 
     const conversationId = currentConversationId;
 
-    const userMessage: ChatMessage = {
-      id: `user-${Date.now()}`,
-      role: "user",
+    const newMessageDTO: CreateMessageDTO = {
       content: messageInput.trim(),
+      sender: "user",
     };
 
-    setMessagesByConversation((previous) => {
-      const current = previous[conversationId] ?? [];
-      return {
-        ...previous,
-        [conversationId]: [...current, userMessage],
-      };
-    });
+    if (!token) {
+      alert("Please log in to send a message.");
+      return;
+    }
 
-    updateConversationPreview(conversationId, messageInput.trim());
+    const updatedChat = await pushMessageToChat(
+      token,
+      conversationId,
+      newMessageDTO
+    );
+
+    const updatedChats = await listAllChatsOfUser(token);
+
+    setConversations(updatedChats);
+
     setMessageInput("");
     setIsLoading(true);
 
     const shouldUseSearch = webSearchEnabled;
 
     window.setTimeout(
-      () => {
+      async () => {
         const assistantMessage = simulateAssistantReply(
-          userMessage.content,
+          newMessageDTO.content,
           shouldUseSearch
         );
-        setMessagesByConversation((previous) => {
-          const current = previous[conversationId] ?? [];
-          return {
-            ...previous,
-            [conversationId]: [...current, assistantMessage],
-          };
-        });
-        updateConversationPreview(conversationId, assistantMessage.content);
+
+        const formattedMessage: CreateMessageDTO = {
+          content: assistantMessage.content,
+          sender: "bot",
+        };
+
+        const updatedChat = await pushMessageToChat(
+          token,
+          conversationId,
+          formattedMessage
+        );
+
+        const updatedChats = await listAllChatsOfUser(token);
+        setConversations(updatedChats);
+
+        // updateConversationPreview(conversationId, assistantMessage.content);
         setIsLoading(false);
       },
       shouldUseSearch ? 1200 : 800
@@ -282,44 +281,16 @@ const AiPage = () => {
     setMessageInput(suggestion);
   };
 
-  const handleResetConversation = () => {
-    setMessagesByConversation((previous) => ({
-      ...previous,
-      [currentConversationId]: [DEFAULT_ASSISTANT_MESSAGE],
-    }));
-    updateConversationPreview(
-      currentConversationId,
-      "Ask IslaBot how IslaGrid powers communities."
-    );
-    setMessageInput("");
-    setIsLoading(false);
-  };
-
   const handleOnboardingComplete = async (data: OnboardingData) => {
     setOnboardingLoading(true);
     try {
-      const response = await fetch("/api/user/context", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          location: data.location,
-          monthlyIncome: data.monthlyIncome,
-          monthlyExpenses: data.monthlyExpenses,
-          appliances: data.appliances,
-        }),
-      });
-
-      if (response.ok) {
-        const result = await response.json();
+      if (token) {
+        const response = await createUserContext(token, data);
         setUserContext(data);
         setShowOnboarding(false);
-      } else {
-        const error = await response.json();
-        console.error("Failed to save onboarding data:", error);
-        alert("Failed to save your profile. Please try again.");
       }
+      setUserContext(data);
+      setShowOnboarding(false);
     } catch (error) {
       console.error("Error saving onboarding data:", error);
       alert("An error occurred. Please try again.");
@@ -448,20 +419,14 @@ const AiPage = () => {
           />
 
           <ChatMessageList
-            messages={currentMessages}
+            messages={
+              conversations.find(
+                (conversation) => conversation.chatId === currentConversationId
+              )?.messages || []
+            }
             isLoading={isLoading}
             suggestions={SUGGESTED_PROMPTS}
             onSuggestionPick={handleSuggestionPick}
-            onCopyMessage={(messageId) => {
-              const message = currentMessages.find(
-                (item) => item.id === messageId
-              );
-              if (message) {
-                window.navigator.clipboard
-                  .writeText(message.content)
-                  .catch(() => {});
-              }
-            }}
             webSearchEnabled={webSearchEnabled}
           />
 

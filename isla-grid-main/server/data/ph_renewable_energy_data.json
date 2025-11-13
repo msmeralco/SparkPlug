@@ -1,0 +1,2106 @@
+{
+  "metadata": {
+    "source": "Phil-LiDAR 2 Program Nationwide Detailed Resources Assessment",
+    "description": "Provincial renewable energy potential data for AI-driven energy system recommendations",
+    "country": "Philippines",
+    "data_categories": ["biomass", "hydropower", "solar", "wind"],
+    "units": {
+      "biomass": "MJ/ha (Megajoules per hectare)",
+      "hydropower": "kW (Kilowatts)",
+      "solar": "Wh/m²/day (Watt-hours per square meter per day)",
+      "wind": "W/m² (Watts per square meter)"
+    }
+  },
+  "provinces": [
+    {
+      "province": "Abra",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 121,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 142,
+        "total_available": 263,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 40.74,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4573.89,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1578.26,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["biomass_corn"]
+    },
+    {
+      "province": "Agusan del Norte",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 1019,
+        "total_available": 1019,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 201.71,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4373.82,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 504.12,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_rice", "solar"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "Agusan del Sur",
+      "biomass": {
+        "coco_husk_shell": 1823,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 568,
+        "total_available": 2391,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 1009.61,
+        "viability": "moderate"
+      },
+      "solar": {
+        "ghi_avg": 4438.71,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 299.25,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["biomass_coconut", "hydropower"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Aklan",
+      "biomass": {
+        "coco_husk_shell": 110,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 547,
+        "total_available": 657,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 175.15,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4640.60,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 1306.54,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["biomass_rice"]
+    },
+    {
+      "province": "Albay",
+      "biomass": {
+        "coco_husk_shell": 4745,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 148,
+        "total_available": 4893,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 101.52,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4433.66,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 880.82,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["solar", "wind"]
+    },
+    {
+      "province": "Antique",
+      "biomass": {
+        "coco_husk_shell": 13,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 6,
+        "total_available": 19,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 34.61,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4638.02,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 1592.08,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Apayao",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 161,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 53,
+        "total_available": 214,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 116.80,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4434.78,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1926.13,
+        "viability": "high"
+      },
+      "recommended_primary": ["wind", "solar"],
+      "recommended_secondary": ["biomass_corn"]
+    },
+    {
+      "province": "Aurora",
+      "biomass": {
+        "coco_husk_shell": 2197,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 316,
+        "total_available": 2513,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 258.51,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4320.99,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1400.06,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["biomass_coconut", "wind"],
+      "recommended_secondary": ["solar", "hydropower"]
+    },
+    {
+      "province": "Basilan",
+      "biomass": {
+        "coco_husk_shell": 3754,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 3754,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 2.22,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4653.82,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 281.34,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["biomass_coconut", "solar"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Bataan",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 393,
+        "total_available": 393,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 2.61,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4546.51,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1278.53,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["biomass_rice"]
+    },
+    {
+      "province": "Batanes",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 0,
+        "viability": "none"
+      },
+      "hydropower": {
+        "potential_kw": 3.78,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4428.34,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1281.85,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["wind", "solar"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Batangas",
+      "biomass": {
+        "coco_husk_shell": 1201,
+        "corn_cob": 298,
+        "sugarcane_bagasse": 2806,
+        "rice_husk": 25,
+        "total_available": 4330,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 12.59,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4516.65,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1337.15,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["biomass_sugarcane", "biomass_coconut"],
+      "recommended_secondary": ["solar", "wind"]
+    },
+    {
+      "province": "Benguet",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 103,
+        "total_available": 103,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 94.40,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4573.83,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 831.42,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar"],
+      "recommended_secondary": ["wind"]
+    },
+    {
+      "province": "Biliran",
+      "biomass": {
+        "coco_husk_shell": 1308,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 1002,
+        "total_available": 2310,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 30.44,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4476.34,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 679.44,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut", "biomass_rice"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Bohol",
+      "biomass": {
+        "coco_husk_shell": 3293,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 3293,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 61.97,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4455.27,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 597.51,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut", "solar"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Bukidnon",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 11,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 54,
+        "total_available": 65,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 2142.87,
+        "viability": "very_high"
+      },
+      "solar": {
+        "ghi_avg": 4485.78,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 631.21,
+        "viability": "low"
+      },
+      "recommended_primary": ["hydropower"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Bulacan",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 51,
+        "total_available": 51,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 189.01,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4402.88,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1216.78,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "Cagayan",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 1896,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 780,
+        "total_available": 2676,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 285.40,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4469.26,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1732.67,
+        "viability": "high"
+      },
+      "recommended_primary": ["biomass_corn", "wind"],
+      "recommended_secondary": ["solar", "hydropower"]
+    },
+    {
+      "province": "Camarines Norte",
+      "biomass": {
+        "coco_husk_shell": 2028,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 97,
+        "total_available": 2125,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 148.48,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4072.00,
+        "viability": "low"
+      },
+      "wind": {
+        "max_power_density": 1017.52,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["biomass_coconut", "wind"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "Camarines Sur",
+      "biomass": {
+        "coco_husk_shell": 3077,
+        "corn_cob": 70,
+        "sugarcane_bagasse": 1158,
+        "rice_husk": 136,
+        "total_available": 4441,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 279.16,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4424.99,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 953.47,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut", "biomass_sugarcane"],
+      "recommended_secondary": ["hydropower", "solar"]
+    },
+    {
+      "province": "Camiguin",
+      "biomass": {
+        "coco_husk_shell": 13222,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 37,
+        "total_available": 13259,
+        "viability": "exceptional"
+      },
+      "hydropower": {
+        "potential_kw": 10.72,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4341.96,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 610.46,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Capiz",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 12,
+        "rice_husk": 52,
+        "total_available": 64,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 228.15,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4536.16,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 653.37,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar", "hydropower"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Catanduanes",
+      "biomass": {
+        "coco_husk_shell": 51,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 405,
+        "total_available": 456,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 198.12,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4372.66,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 933.81,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar"],
+      "recommended_secondary": ["wind", "biomass_rice"]
+    },
+    {
+      "province": "Cavite",
+      "biomass": {
+        "coco_husk_shell": 309,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 398,
+        "total_available": 707,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 7.15,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4495.21,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1192.91,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["biomass_rice"]
+    },
+    {
+      "province": "Cebu",
+      "biomass": {
+        "coco_husk_shell": 659,
+        "corn_cob": 58,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 42,
+        "total_available": 759,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 18.79,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4519.62,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 629.25,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar"],
+      "recommended_secondary": ["biomass_coconut"]
+    },
+    {
+      "province": "Compostela Valley",
+      "biomass": {
+        "coco_husk_shell": 1155,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 145,
+        "total_available": 1300,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 243.11,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4552.39,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 365.74,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["biomass_coconut", "solar"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "Davao del Norte",
+      "biomass": {
+        "coco_husk_shell": 772,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 909,
+        "total_available": 1681,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 332.95,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4590.54,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 398.32,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["solar", "biomass_rice"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "Davao del Sur",
+      "biomass": {
+        "coco_husk_shell": 2280,
+        "corn_cob": 72,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 60,
+        "total_available": 2412,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 156.44,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4691.44,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 456.04,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar", "biomass_coconut"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "Davao Oriental",
+      "biomass": {
+        "coco_husk_shell": 850,
+        "corn_cob": 22,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 146,
+        "total_available": 1018,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 247.83,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4618.37,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 632.33,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar", "biomass_coconut"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "Dinagat Islands",
+      "biomass": {
+        "coco_husk_shell": 356,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 72,
+        "total_available": 428,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 23.51,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4389.70,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 689.50,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar"],
+      "recommended_secondary": ["wind", "biomass_coconut"]
+    },
+    {
+      "province": "Eastern Samar",
+      "biomass": {
+        "coco_husk_shell": 1057,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 51,
+        "total_available": 1108,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 426.76,
+        "viability": "moderate"
+      },
+      "solar": {
+        "ghi_avg": 4367.20,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 731.87,
+        "viability": "low"
+      },
+      "recommended_primary": ["hydropower", "biomass_coconut"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Guimaras",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 0,
+        "viability": "none"
+      },
+      "hydropower": {
+        "potential_kw": 89.18,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4591.76,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 1051.45,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Ifugao",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 374,
+        "total_available": 374,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 228.33,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4452.20,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 872.56,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar"],
+      "recommended_secondary": ["wind", "hydropower"]
+    },
+    {
+      "province": "Ilocos Norte",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 73,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 210,
+        "total_available": 283,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 4.03,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4533.98,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 2774.02,
+        "viability": "exceptional"
+      },
+      "recommended_primary": ["wind"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Ilocos Sur",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 573,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 273,
+        "total_available": 846,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 57.76,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4683.68,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 1152.35,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["biomass_corn"]
+    },
+    {
+      "province": "Iloilo",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 13,
+        "sugarcane_bagasse": 416,
+        "rice_husk": 29,
+        "total_available": 458,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 43.04,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4548.35,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1231.29,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["biomass_sugarcane"]
+    },
+    {
+      "province": "Isabela",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 1750,
+        "sugarcane_bagasse": 71,
+        "rice_husk": 779,
+        "total_available": 2600,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 884.23,
+        "viability": "moderate"
+      },
+      "solar": {
+        "ghi_avg": 4466.33,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 864.89,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_corn", "hydropower"],
+      "recommended_secondary": ["solar", "biomass_rice"]
+    },
+    {
+      "province": "Kalinga",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 212,
+        "total_available": 212,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 306.23,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4412.37,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1331.53,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["wind", "solar"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "La Union",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 679,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 727,
+        "total_available": 1406,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 35.75,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4702.71,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 615.53,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar", "biomass_corn", "biomass_rice"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Laguna",
+      "biomass": {
+        "coco_husk_shell": 532,
+        "corn_cob": 25,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 236,
+        "total_available": 793,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 131.56,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4251.97,
+        "viability": "low"
+      },
+      "wind": {
+        "max_power_density": 705.09,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["hydropower", "wind"]
+    },
+    {
+      "province": "Lanao del Norte",
+      "biomass": {
+        "coco_husk_shell": 866,
+        "corn_cob": 45,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 32,
+        "total_available": 943,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 407.49,
+        "viability": "moderate"
+      },
+      "solar": {
+        "ghi_avg": 4454.46,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 565.29,
+        "viability": "low"
+      },
+      "recommended_primary": ["hydropower", "solar"],
+      "recommended_secondary": ["biomass_coconut"]
+    },
+    {
+      "province": "Lanao del Sur",
+      "biomass": {
+        "coco_husk_shell": 1714,
+        "corn_cob": 28,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 50,
+        "total_available": 1792,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 314.25,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4383.77,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 467.83,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut", "hydropower"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Leyte",
+      "biomass": {
+        "coco_husk_shell": 645,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 2081,
+        "total_available": 2726,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 85.93,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4377.12,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 914.16,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_rice", "biomass_coconut"],
+      "recommended_secondary": ["solar", "wind"]
+    },
+    {
+      "province": "Maguindanao",
+      "biomass": {
+        "coco_husk_shell": 1133,
+        "corn_cob": 90,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 439,
+        "total_available": 1662,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 259.56,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4611.26,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 306.99,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["solar", "biomass_coconut"],
+      "recommended_secondary": ["hydropower", "biomass_rice"]
+    },
+    {
+      "province": "Marinduque",
+      "biomass": {
+        "coco_husk_shell": 2100,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 197,
+        "total_available": 2297,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 103.11,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4141.89,
+        "viability": "low"
+      },
+      "wind": {
+        "max_power_density": 871.93,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["wind"]
+    },
+    {
+      "province": "Masbate",
+      "biomass": {
+        "coco_husk_shell": 2189,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 379,
+        "total_available": 2568,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 16.85,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4448.51,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 829.59,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["solar", "wind"]
+    },
+    {
+      "province": "Metropolitan Manila",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 0,
+        "viability": "none"
+      },
+      "hydropower": {
+        "potential_kw": 16.78,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4450.79,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 535.69,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Misamis Occidental",
+      "biomass": {
+        "coco_husk_shell": 3853,
+        "corn_cob": 9,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 373,
+        "total_available": 4235,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 53.67,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4487.72,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 592.99,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Misamis Oriental",
+      "biomass": {
+        "coco_husk_shell": 2065,
+        "corn_cob": 105,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 51,
+        "total_available": 2221,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 275.15,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4341.02,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 700.60,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["hydropower", "solar"]
+    },
+    {
+      "province": "Mountain Province",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 93,
+        "total_available": 93,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 153.69,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4441.31,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1095.81,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "Negros Occidental",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 80,
+        "total_available": 80,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 36.80,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4605.47,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 1014.61,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Negros Oriental",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 0,
+        "viability": "none"
+      },
+      "hydropower": {
+        "potential_kw": 42.98,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4707.09,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 915.52,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar"],
+      "recommended_secondary": ["wind"]
+    },
+    {
+      "province": "North Cotabato",
+      "biomass": {
+        "coco_husk_shell": 138,
+        "corn_cob": 22,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 76,
+        "total_available": 236,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 3141.42,
+        "viability": "exceptional"
+      },
+      "solar": {
+        "ghi_avg": 4643.39,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 454.54,
+        "viability": "low"
+      },
+      "recommended_primary": ["hydropower"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Northern Samar",
+      "biomass": {
+        "coco_husk_shell": 5599,
+        "corn_cob": 70,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 354,
+        "total_available": 6023,
+        "viability": "exceptional"
+      },
+      "hydropower": {
+        "potential_kw": 164.83,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4305.16,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 942.10,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["solar", "wind"]
+    },
+    {
+      "province": "Nueva Ecija",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 17,
+        "total_available": 17,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 608.79,
+        "viability": "moderate"
+      },
+      "solar": {
+        "ghi_avg": 4579.31,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1538.39,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["wind", "hydropower"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Nueva Vizcaya",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 276,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 520,
+        "total_available": 796,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 830.61,
+        "viability": "moderate"
+      },
+      "solar": {
+        "ghi_avg": 4528.10,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1306.49,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["hydropower", "wind"],
+      "recommended_secondary": ["solar", "biomass_rice"]
+    },
+    {
+      "province": "Occidental Mindoro",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 133,
+        "total_available": 133,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 46.16,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4379.56,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 2439.96,
+        "viability": "very_high"
+      },
+      "recommended_primary": ["wind"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Oriental Mindoro",
+      "biomass": {
+        "coco_husk_shell": 281,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 585,
+        "total_available": 866,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 80.03,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4328.04,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1828.51,
+        "viability": "high"
+      },
+      "recommended_primary": ["wind"],
+      "recommended_secondary": ["solar", "biomass_rice"]
+    },
+    {
+      "province": "Palawan",
+      "biomass": {
+        "coco_husk_shell": 305,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 42,
+        "total_available": 347,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 35.02,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4339.74,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1350.38,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["wind", "solar"],
+      "recommended_secondary": ["biomass_coconut"]
+    },
+    {
+      "province": "Pampanga",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 621,
+        "sugarcane_bagasse": 121,
+        "rice_husk": 454,
+        "total_available": 1196,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 21.35,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4648.78,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 1584.10,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["biomass_corn", "biomass_rice"]
+    },
+    {
+      "province": "Pangasinan",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 853,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 181,
+        "total_available": 1034,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 268.22,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4829.08,
+        "viability": "very_high"
+      },
+      "wind": {
+        "max_power_density": 1405.29,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": ["biomass_corn", "hydropower"]
+    },
+    {
+      "province": "Quezon",
+      "biomass": {
+        "coco_husk_shell": 3593,
+        "corn_cob": 26,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 146,
+        "total_available": 3765,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 379.29,
+        "viability": "moderate"
+      },
+      "solar": {
+        "ghi_avg": 4182.51,
+        "viability": "low"
+      },
+      "wind": {
+        "max_power_density": 1259.88,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["biomass_coconut", "wind"],
+      "recommended_secondary": ["hydropower"]
+    },
+    {
+      "province": "Quirino",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 510,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 118,
+        "total_available": 628,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 5450.14,
+        "viability": "exceptional"
+      },
+      "solar": {
+        "ghi_avg": 4395.37,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 347.29,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["hydropower"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Rizal",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 170,
+        "total_available": 170,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 252.35,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4290.98,
+        "viability": "low"
+      },
+      "wind": {
+        "max_power_density": 1124.84,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["wind", "hydropower"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Romblon",
+      "biomass": {
+        "coco_husk_shell": 3237,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 3237,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 17.18,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4435.61,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 1165.30,
+        "viability": "moderate"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["wind", "solar"]
+    },
+    {
+      "province": "Samar",
+      "biomass": {
+        "coco_husk_shell": 3813,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 199,
+        "total_available": 4012,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 377.37,
+        "viability": "moderate"
+      },
+      "solar": {
+        "ghi_avg": 4318.40,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 665.25,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut", "hydropower"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Sarangani",
+      "biomass": {
+        "coco_husk_shell": 742,
+        "corn_cob": 38,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 780,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 18.86,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4601.56,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 437.94,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar", "biomass_coconut"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Siquijor",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 0,
+        "viability": "none"
+      },
+      "hydropower": {
+        "potential_kw": 2.42,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4452.43,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 631.33,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Sorsogon",
+      "biomass": {
+        "coco_husk_shell": 3272,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 84,
+        "total_available": 3356,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 66.29,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4408.93,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 941.93,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["solar", "wind"]
+    },
+    {
+      "province": "South Cotabato",
+      "biomass": {
+        "coco_husk_shell": 119,
+        "corn_cob": 57,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 250,
+        "total_available": 426,
+        "viability": "low"
+      },
+      "hydropower": {
+        "potential_kw": 15.99,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4618.53,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 424.11,
+        "viability": "low"
+      },
+      "recommended_primary": ["solar"],
+      "recommended_secondary": ["biomass_rice"]
+    },
+    {
+      "province": "Southern Leyte",
+      "biomass": {
+        "coco_husk_shell": 3077,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 637,
+        "total_available": 3714,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 15.56,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4349.75,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 659.90,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["biomass_rice", "solar"]
+    },
+    {
+      "province": "Sultan Kudarat",
+      "biomass": {
+        "coco_husk_shell": 672,
+        "corn_cob": 177,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 212,
+        "total_available": 1061,
+        "viability": "moderate"
+      },
+      "hydropower": {
+        "potential_kw": 394.89,
+        "viability": "moderate"
+      },
+      "solar": {
+        "ghi_avg": 4644.67,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 244.80,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["solar", "hydropower"],
+      "recommended_secondary": ["biomass_coconut"]
+    },
+    {
+      "province": "Sulu",
+      "biomass": {
+        "coco_husk_shell": 6345,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 6345,
+        "viability": "exceptional"
+      },
+      "hydropower": {
+        "potential_kw": 1.05,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4676.31,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 295.99,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["biomass_coconut", "solar"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Surigao del Norte",
+      "biomass": {
+        "coco_husk_shell": 5148,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 55,
+        "total_available": 5203,
+        "viability": "exceptional"
+      },
+      "hydropower": {
+        "potential_kw": 166.92,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4443.85,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 551.22,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["solar"]
+    },
+    {
+      "province": "Surigao del Sur",
+      "biomass": {
+        "coco_husk_shell": 3233,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 62,
+        "total_available": 3295,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 304.70,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4464.87,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 339.40,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["biomass_coconut"],
+      "recommended_secondary": ["hydropower", "solar"]
+    },
+    {
+      "province": "Tarlac",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 480,
+        "sugarcane_bagasse": 4506,
+        "rice_husk": 346,
+        "total_available": 5332,
+        "viability": "exceptional"
+      },
+      "hydropower": {
+        "potential_kw": 28.84,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4828.20,
+        "viability": "very_high"
+      },
+      "wind": {
+        "max_power_density": 989.99,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_sugarcane", "solar"],
+      "recommended_secondary": ["biomass_corn", "biomass_rice"]
+    },
+    {
+      "province": "Tawi Tawi",
+      "biomass": {
+        "coco_husk_shell": 5732,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 0,
+        "total_available": 5732,
+        "viability": "exceptional"
+      },
+      "hydropower": {
+        "potential_kw": 0.25,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4614.17,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 146.57,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["biomass_coconut", "solar"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Zambales",
+      "biomass": {
+        "coco_husk_shell": 0,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 94,
+        "total_available": 94,
+        "viability": "very_low"
+      },
+      "hydropower": {
+        "potential_kw": 11.73,
+        "viability": "negligible"
+      },
+      "solar": {
+        "ghi_avg": 4761.85,
+        "viability": "very_high"
+      },
+      "wind": {
+        "max_power_density": 1984.77,
+        "viability": "high"
+      },
+      "recommended_primary": ["solar", "wind"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Zamboanga del Norte",
+      "biomass": {
+        "coco_husk_shell": 2716,
+        "corn_cob": 0,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 11,
+        "total_available": 2727,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 140.38,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4543.59,
+        "viability": "moderate"
+      },
+      "wind": {
+        "max_power_density": 686.17,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut", "solar"],
+      "recommended_secondary": []
+    },
+    {
+      "province": "Zamboanga del Sur",
+      "biomass": {
+        "coco_husk_shell": 4107,
+        "corn_cob": 61,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 219,
+        "total_available": 4387,
+        "viability": "very_high"
+      },
+      "hydropower": {
+        "potential_kw": 124.99,
+        "viability": "low"
+      },
+      "solar": {
+        "ghi_avg": 4597.88,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 469.24,
+        "viability": "low"
+      },
+      "recommended_primary": ["biomass_coconut", "solar"],
+      "recommended_secondary": ["biomass_rice"]
+    },
+    {
+      "province": "Zamboanga Sibugay",
+      "biomass": {
+        "coco_husk_shell": 2114,
+        "corn_cob": 66,
+        "sugarcane_bagasse": 0,
+        "rice_husk": 257,
+        "total_available": 2437,
+        "viability": "high"
+      },
+      "hydropower": {
+        "potential_kw": 65.25,
+        "viability": "very_low"
+      },
+      "solar": {
+        "ghi_avg": 4630.98,
+        "viability": "high"
+      },
+      "wind": {
+        "max_power_density": 203.89,
+        "viability": "very_low"
+      },
+      "recommended_primary": ["biomass_coconut", "solar"],
+      "recommended_secondary": ["biomass_rice"]
+    }
+  ],
+  "ai_reasoning_framework": {
+    "viability_thresholds": {
+      "biomass": {
+        "exceptional": ">5000 MJ/ha",
+        "very_high": "3000-5000 MJ/ha",
+        "high": "2000-3000 MJ/ha",
+        "moderate": "1000-2000 MJ/ha",
+        "low": "500-1000 MJ/ha",
+        "very_low": "100-500 MJ/ha",
+        "negligible": "<100 MJ/ha",
+        "none": "0 MJ/ha"
+      },
+      "hydropower": {
+        "exceptional": ">3000 kW",
+        "very_high": "2000-3000 kW",
+        "high": "1000-2000 kW",
+        "moderate": "500-1000 kW",
+        "low": "100-500 kW",
+        "very_low": "50-100 kW",
+        "negligible": "<50 kW"
+      },
+      "solar": {
+        "very_high": ">4700 Wh/m²/day",
+        "high": "4600-4700 Wh/m²/day",
+        "moderate": "4300-4600 Wh/m²/day",
+        "low": "<4300 Wh/m²/day"
+      },
+      "wind": {
+        "exceptional": ">2500 W/m²",
+        "very_high": "2000-2500 W/m²",
+        "high": "1500-2000 W/m²",
+        "moderate": "1000-1500 W/m²",
+        "low": "600-1000 W/m²",
+        "very_low": "<600 W/m²"
+      }
+    },
+    "recommendation_logic": {
+      "primary_energy_selection": [
+        "Select energy sources with 'high', 'very_high', or 'exceptional' viability ratings",
+        "Prioritize exceptional ratings first",
+        "Consider local resource availability and sustainability",
+        "Factor in technology maturity and infrastructure requirements"
+      ],
+      "secondary_energy_selection": [
+        "Consider 'moderate' viability sources as backup or complementary options",
+        "Include diversification for energy security",
+        "Evaluate seasonal variations and reliability"
+      ],
+      "hybrid_system_consideration": [
+        "Recommend hybrid systems when multiple sources have moderate-to-high viability",
+        "Solar + Wind: Complementary generation patterns (day/night, seasonal)",
+        "Solar + Biomass: Provides baseload + peak generation",
+        "Hydro + Solar: Seasonal water availability complemented by solar",
+        "Biomass + Wind: Consistent baseload with wind peaks"
+      ],
+      "location_specific_factors": [
+        "Geography: Island vs mainland affects grid connection",
+        "Population density: Higher density favors larger centralized plants",
+        "Existing infrastructure: Grid connection vs microgrid",
+        "Land availability: Affects solar farm and biomass processing facility sizing",
+        "Water resources: Critical for hydropower feasibility",
+        "Agricultural waste streams: Ensures biomass fuel supply chain"
+      ]
+    }
+  }
+}

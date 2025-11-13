@@ -1,9 +1,11 @@
 import { ApiRequest, ApiResponse } from "@/types/apiTypes";
-import { Context } from "@/types/userContextsType";
+import { CreateUserContextDTO, UserContext } from "@/types/userContextsType";
 
-
-export const createContext = async (authToken: string, context: Context) => {
-  const requestBody: ApiRequest<Context> = {
+export const createUserContext = async (
+  authToken: string,
+  context: CreateUserContextDTO
+) => {
+  const requestBody: ApiRequest<CreateUserContextDTO> = {
     payload: context,
   };
 
@@ -11,7 +13,7 @@ export const createContext = async (authToken: string, context: Context) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      authToken: authToken,
+      "Authorization": `Bearer ${authToken}`
     },
     body: JSON.stringify(requestBody),
   });
@@ -21,19 +23,19 @@ export const createContext = async (authToken: string, context: Context) => {
     throw new Error(resultPayload.message);
   }
 
-  const resultPayload = (await result.json()) as ApiResponse<Context>;
+  const resultPayload = (await result.json()) as ApiResponse<UserContext>;
 
   const newContext = resultPayload.data;
 
   return newContext;
 };
 
-export const getContext = async (authToken: string, userId: string) => {
-  const result = await fetch(`http://localhost:8000/api/contexts/${userId}`, {
+export const getUserContext = async (authToken: string) => {
+  const result = await fetch(`http://localhost:8000/api/contexts`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authToken: authToken,
+      "Authorization": `Bearer ${authToken}`
     },
   });
 
@@ -42,24 +44,26 @@ export const getContext = async (authToken: string, userId: string) => {
     throw new Error(resultPayload.message);
   }
 
-  const resultPayload = (await result.json()) as ApiResponse<Context>;
+  const resultPayload = (await result.json()) as ApiResponse<UserContext>;
 
   const newContext = resultPayload.data;
 
   return newContext;
 };
 
-export const updateContext = async (authToken: string, newContext: Context) => {
-  const requestBody: ApiRequest<Context> = {
+export const updateUserContext = async (
+  authToken: string,
+  newContext: CreateUserContextDTO
+) => {
+  const requestBody: ApiRequest<CreateUserContextDTO> = {
     payload: newContext,
   };
 
-  const userId = newContext.userId
-  const result = await fetch(`http://localhost:8000/api/contexts/${userId}`, {
+  const result = await fetch(`http://localhost:8000/api/contexts/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      authToken: authToken,
+      "Authorization": `Bearer ${authToken}`
     },
     body: JSON.stringify(requestBody),
   });
@@ -69,19 +73,19 @@ export const updateContext = async (authToken: string, newContext: Context) => {
     throw new Error(resultPayload.message);
   }
 
-  const resultPayload = (await result.json()) as ApiResponse<Context>;
+  const resultPayload = (await result.json()) as ApiResponse<UserContext>;
 
   const updatedContext = resultPayload.data;
 
   return updatedContext;
 };
 
-export const deleteContext = async (authToken: string, userId: string) => {
-  const result = await fetch(`http://localhost:8000/api/contexts/${userId}`, {
+export const deleteUserContext = async (authToken: string) => {
+  const result = await fetch(`http://localhost:8000/api/contexts/ `, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      authToken: authToken,
+      "Authorization": `Bearer ${authToken}`
     },
   });
 
@@ -90,7 +94,7 @@ export const deleteContext = async (authToken: string, userId: string) => {
     throw new Error(resultPayload.message);
   }
 
-  const resultPayload = (await result.json()) as ApiResponse<Context>;
+  const resultPayload = (await result.json()) as ApiResponse<UserContext>;
 
   const deletedContext = resultPayload.data;
 

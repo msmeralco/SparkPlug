@@ -3,13 +3,13 @@
 import { Fragment, useEffect, useRef } from "react";
 import { Bot, Copy, Globe, Loader2, User } from "lucide-react";
 import { type ChatMessage } from "./types";
+import { Message } from "@/types/chatTypes";
 
 interface ChatMessageListProps {
-  messages: ChatMessage[];
+  messages: Message[];
   isLoading: boolean;
   suggestions: string[];
-  onSuggestionPick: (suggestion: string) => void;
-  onCopyMessage?: (messageId: string) => void;
+  onSuggestionPick: (suggestion: string) => void; 
   webSearchEnabled: boolean;
 }
 
@@ -17,8 +17,7 @@ const ChatMessageList = ({
   messages,
   isLoading,
   suggestions,
-  onSuggestionPick,
-  onCopyMessage,
+  onSuggestionPick, 
   webSearchEnabled,
 }: ChatMessageListProps) => {
   const endRef = useRef<HTMLDivElement>(null);
@@ -56,11 +55,11 @@ const ChatMessageList = ({
         ) : (
           <Fragment>
             {messages.map((message) => {
-              const isAssistant = message.role === "assistant";
+              const isAssistant = message.sender === "bot";
 
               return (
                 <div
-                  key={message.id}
+                  key={message.messageId}
                   className={`flex ${
                     isAssistant ? "justify-start" : "justify-end"
                   }`}
@@ -129,7 +128,8 @@ const ChatMessageList = ({
                     {isAssistant && (
                       <button
                         type="button"
-                        onClick={() => onCopyMessage?.(message.id)}
+                        onClick={() => {
+                          navigator.clipboard.writeText(message.content);}}
                         className="mt-3 flex items-center gap-2 text-xs uppercase tracking-wide text-[#FC7019] transition hover:text-[#D85505]"
                       >
                         <Copy className="h-3.5 w-3.5" /> Copy

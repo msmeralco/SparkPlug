@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useLanguage } from '@/providers/language';
+import Image from 'next/image';
 
 const copy = {
   en: {
@@ -55,11 +56,20 @@ const PageNavbar = () => {
         <div className="flex flex-nowrap justify-between items-center ">
           <a
             href="#"
-            className={`text-3xl font-extrabold whitespace-nowrap transition-colors duration-300 ${
+            className={`flex items-center gap-2 text-3xl font-extrabold whitespace-nowrap transition-colors duration-300 ${
               hasScrolled ? 'text-[#131B28]' : 'text-white'
             }`}
           >
-            <span className="text-[#FC7019]">Isla</span>Grid
+            <Image
+              src={hasScrolled ? '/Light-SPLogo.svg' : '/Dark-SPLogo.svg'}
+              alt="IslaGrid Logo"
+              width={40}
+              height={40}
+              className="transition-opacity duration-300"
+            />
+            <span className="flex">
+              <span className="text-[#FC7019]">Isla</span>Grid
+            </span>
           </a>
           
           {/* Desktop Menu */}
