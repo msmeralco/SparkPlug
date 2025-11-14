@@ -406,7 +406,7 @@ Investment: ₱${financials.totalInvestment.toLocaleString()} | Payback: ${
                   </p>
                   <p className="text-red-600 text-xs mt-1">
                     Make sure the backend server is running at{" "}
-                    {process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000"}
+                    {process.env.NEXT_PUBLIC_API_URL || "https://isla-gridserver.vercel.app/"}
                   </p>
                 </div>
               )}

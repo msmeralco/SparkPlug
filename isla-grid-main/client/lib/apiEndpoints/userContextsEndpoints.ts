@@ -9,7 +9,7 @@ export const createUserContext = async (
     payload: context,
   };
 
-  const result = await fetch("http://localhost:8000/api/contexts", {
+  const result = await fetch(  `${process.env.NEXT_PUBLIC_API_URL}/api/contexts`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -31,7 +31,7 @@ export const createUserContext = async (
 };
 
 export const getUserContext = async (authToken: string) => {
-  const result = await fetch(`http://localhost:8000/api/contexts`, {
+  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contexts`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -59,7 +59,7 @@ export const updateUserContext = async (
     payload: newContext,
   };
 
-  const result = await fetch(`http://localhost:8000/api/contexts/`, {
+  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contexts/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -81,7 +81,7 @@ export const updateUserContext = async (
 };
 
 export const deleteUserContext = async (authToken: string) => {
-  const result = await fetch(`http://localhost:8000/api/contexts/ `, {
+  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/contexts/ `, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

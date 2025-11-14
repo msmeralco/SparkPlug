@@ -291,7 +291,7 @@ const OnboardingModal = ({
       : 0;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+    <div className="fixed inset-0 z-500 flex items-center justify-center bg-black/50 p-4">
       <div className="relative w-full max-w-2xl rounded-2xl bg-white p-8 shadow-2xl md:p-12 max-h-[90vh] overflow-y-auto">
         {/* Progress Bar */}
         <div className="mb-6">

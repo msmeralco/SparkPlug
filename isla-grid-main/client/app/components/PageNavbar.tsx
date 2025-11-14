@@ -99,7 +99,7 @@ const PageNavbar = () => {
                {t.features}
              </a>
              <a
-               href="#contact"
+               href="/ai"
                className="bg-[#FC7019] text-white px-5 py-2 rounded-lg font-semibold shadow-md hover:brightness-95 transition-all shrink-0 whitespace-nowrap"
              >
                {t.cta}

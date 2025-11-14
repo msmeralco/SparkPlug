@@ -5,7 +5,7 @@ import { Chat, CreateMessageDTO, Message } from "@/types/chatTypes";
  * creates a chat for the authenticated user
  */
 export const initializeChat = async (authToken: string): Promise<Chat> => {
-  const result = await fetch("http://localhost:8000/api/chats", {
+  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chats`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -28,7 +28,7 @@ export const initializeChat = async (authToken: string): Promise<Chat> => {
 export const listAllChatsOfUser = async (
   authToken: string
 ): Promise<Chat[]> => {
-  const result = await fetch("http://localhost:8000/api/chats", {
+  const result = await fetch( `${process.env.NEXT_PUBLIC_API_URL}/api/chats`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -52,7 +52,7 @@ export const getSpecificChat = async (
   authToken: string,
   chatId: string
 ): Promise<Chat> => {
-  const result = await fetch(`http://localhost:8000/api/chats/${chatId}`, {
+  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chats/${chatId}`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -80,7 +80,7 @@ export const pushMessageToChat = async (
   const requestBody: ApiRequest<CreateMessageDTO> = {
     payload: message,
   };
-  const result = await fetch(`http://localhost:8000/api/chats/${chatId}`, {
+  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chats/${chatId}`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
@@ -105,7 +105,7 @@ export const deleteChat = async (
   authToken: string,
   chatId: string
 ): Promise<Chat> => {
-  const result = await fetch(`http://localhost:8000/api/chats/${chatId}`, {
+  const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/chats/${chatId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",

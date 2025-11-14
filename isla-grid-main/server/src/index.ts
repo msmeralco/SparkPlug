@@ -4,6 +4,7 @@ import cors from "cors";
 import authenticate from "./middlewares/authenticate.js";
 import { errorHandler } from "./middlewares/errorHandler.js";
 import { chatRouter } from "./routes/chatRoutes.js";
+import renewableDataRoutes from "./routes/renewableDataRoutes.js";
 
 // CORS config
 import path from "path";
@@ -20,14 +21,8 @@ import aiRouter from "./routes/aiRouter.js";
 const app = express();
 const port = process.env.PORT ? Number(process.env.PORT) : 8000;
 
-app.use(
-  cors({
-    origin: "http://localhost:3000",
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-API-Key"],
-  })
-);
+// Allow ALL origins - no restrictions
+app.use(cors());
 
 app.use(authenticate);
 
@@ -66,6 +61,7 @@ app.get("/", (_req, res) => {
 
 app.use("/api/contexts", contextRouter);
 app.use("/api/v1", aiRouter);
+app.use("/api/renewables", renewableDataRoutes);
 
 app.use(errorHandler);
 

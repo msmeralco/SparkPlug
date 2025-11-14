@@ -15,6 +15,8 @@ export const UserRequired = ({ children }: { children: React.ReactNode }) => {
     // if (error) alert(error);
   }, [state, user]);
 
+  if (state==="checking" || state === "unauthenticated") return <p></p>;
+
   return <>{children}</>;
 };
 

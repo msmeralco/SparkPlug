@@ -1,7 +1,7 @@
 "use client";
 
-import { use, useEffect, useMemo, useState } from "react";
-import { RotateCcw, Sparkles, LogOut } from "lucide-react";
+import { useEffect, useState } from "react";
+import { LogOut } from "lucide-react";
 import Link from "next/link";
 import ChatSidebar from "./components/ChatSidebar";
 import ChatHeader from "./components/ChatHeader";
@@ -30,6 +30,177 @@ const SUGGESTED_PROMPTS = [
   "How much can I save with a solar system?",
   "What's the implementation timeline for my home?",
 ];
+
+// Renewable Energy Data (embedded from ph_renewable_energy_data.json)
+const RENEWABLE_ENERGY_DATA = {
+  metadata: {
+    source: "Philippine Renewable Energy Resource Dataset",
+    version: "1.0",
+    lastUpdated: "2024-01-01",
+  },
+  barangays: [
+    // Sample data - will be enriched from actual JSON
+    {
+      name: "San Isidro",
+      province: "Laguna",
+      population: 2500,
+      households: 500,
+      avgDailyDemandKWh: 3000,
+      solarIrradiance: 4.8,
+      hasRiverAccess: true,
+      avgWindSpeed: 3.2,
+      gridConnected: true,
+      currentElectricityCostPerKWh: 12.5,
+    },
+  ],
+};
+
+// Partners Data (embedded from partners.json)
+const PARTNERS_DATA = {
+  partners: [
+    {
+      id: 1,
+      name: "MSpectrum, Inc.",
+      description:
+        "End-to-end solar solutions: rooftop solar for C&I, utility-scale EPC, operations & maintenance.",
+      location: "Philippines",
+      type: "Solar Solutions Provider",
+      website: "https://mspectrum.com.ph",
+      email: "info@mspectrum.com.ph",
+      phone: "+63 (2) 8888-SOLAR",
+      services: [
+        "Rooftop Solar Installation",
+        "Utility-scale EPC",
+        "Operations & Maintenance",
+        "Consulting",
+      ],
+    },
+    {
+      id: 2,
+      name: "MGen Renewable Energy (MGreen)",
+      description:
+        "Large-scale solar development: power plants, solar farms, partner-investments in renewable energy.",
+      location: "Philippines",
+      type: "Renewable Energy Developer",
+      website: "https://mgenrenewable.com.ph",
+      email: "business@mgenrenewable.com.ph",
+      phone: "+63 (2) 7946-1234",
+      services: [
+        "Solar Farm Development",
+        "Power Plant Construction",
+        "Investment Partnerships",
+        "Project Financing",
+      ],
+    },
+    {
+      id: 3,
+      name: "Solar Philippines (SPNEC)",
+      description:
+        "Utility-scale solar farms and supply agreements, large solar zone developments.",
+      location: "Philippines",
+      type: "Solar Farm Developer",
+      website: "https://www.solarphilippines.com.ph",
+      email: "inquiries@solarphilippines.com.ph",
+      phone: "+63 (2) 8123-4567",
+      services: [
+        "Utility-scale Solar Farms",
+        "Supply Agreements",
+        "Solar Zone Development",
+        "Grid Connection Services",
+      ],
+    },
+    {
+      id: 4,
+      name: "SUMEC",
+      description:
+        "Certified renewable energy partner providing solar installation and maintenance services.",
+      location: "Philippines",
+      type: "Solar Installer",
+      website: "https://sumec.com.ph",
+      email: "support@sumec.com.ph",
+      phone: "+63 (2) 5555-SUMEC",
+      services: [
+        "Solar Installation",
+        "Maintenance Services",
+        "System Monitoring",
+        "Warranty Support",
+      ],
+    },
+  ],
+  totalPartners: 4,
+  region: "Philippines",
+};
+
+// Helper to build renewable energy context
+function buildRenewableEnergyContext(): string {
+  if (
+    !RENEWABLE_ENERGY_DATA.barangays ||
+    RENEWABLE_ENERGY_DATA.barangays.length === 0
+  ) {
+    return "No renewable energy data available.";
+  }
+
+  const barangayCount = RENEWABLE_ENERGY_DATA.barangays.length;
+  const provinces = [
+    ...new Set(RENEWABLE_ENERGY_DATA.barangays.map((b) => b.province)),
+  ];
+  const avgSolarIrradiance = (
+    RENEWABLE_ENERGY_DATA.barangays.reduce(
+      (sum, b) => sum + (b.solarIrradiance || 0),
+      0
+    ) / barangayCount
+  ).toFixed(2);
+
+  return `
+**RENEWABLE ENERGY DATA CONTEXT:**
+- Dataset covers ${barangayCount} barangays across ${
+    provinces.length
+  } provinces in the Philippines
+- Average Solar Irradiance: ${avgSolarIrradiance} kWh/m²/day
+- Provinces included: ${provinces.join(", ")}
+- This dataset provides localized resource availability (solar, hydro, wind) for different regions
+- Use this data to provide location-specific renewable energy recommendations`;
+}
+
+// Helper to build partners context
+function buildPartnersContext(): string {
+  if (!PARTNERS_DATA.partners || PARTNERS_DATA.partners.length === 0) {
+    return "No partner data available.";
+  }
+
+  const partnersList = PARTNERS_DATA.partners
+    .map(
+      (partner) => `
+- **${partner.name}** (${partner.type})
+  - Website: ${partner.website}
+  - Email: ${partner.email}
+  - Phone: ${partner.phone}
+  - Description: ${partner.description}
+  - Services: ${partner.services.join(", ")}`
+    )
+    .join("\n");
+
+  return `
+**MERALCO PARTNERS NETWORK - COMPLETE CONTACT DIRECTORY:**
+${partnersList}
+
+**PARTNER RECOMMENDATIONS GUIDELINES:**
+When recommending implementation partners:
+1. Always include the partner's official website link
+2. Provide their email for direct inquiries
+3. Include phone number for immediate consultation
+4. Reference their specific services relevant to the user's needs
+5. Format links as clickable markdown: [Partner Name](website-url)
+6. Recommend partners based on service type and user location
+7. Suggest multiple partners when applicable so user has options
+8. Include partner contact information formatted clearly for easy access
+
+**SERVICE MATCHING:**
+- Home solar installations: SUMEC, MSpectrum
+- Large-scale solar projects: Solar Philippines, MGen Renewable Energy
+- End-to-end solutions: MSpectrum, Inc.
+- Financing & investments: MGen Renewable Energy (MGreen)`;
+}
 
 const AiPage = () => {
   const { user, logout, token } = useAuth();
@@ -100,7 +271,7 @@ const AiPage = () => {
     if (user?.uid) {
       checkOnboardingStatus();
     }
-  }, [user?.uid]);
+  }, [user?.uid, token]);
 
   useEffect(() => {
     if (typeof window === "undefined") {
@@ -116,19 +287,23 @@ const AiPage = () => {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Initialize Gemini context with user data
+  // Initialize Gemini context with user data + embedded data
   const initializeGeminiContext = (context: OnboardingData) => {
-    const systemPrompt = `You are IslaBot, a specialized renewable energy consultant for the IslaGrid platform. You have the following user profile:
+    const systemPrompt = `You are IslaBot, a specialized renewable energy consultant for the IslaGrid platform.
 
-**User Context:**
+**USER CONTEXT:**
 - **Location:** ${context.location}
 - **Monthly Income:** ₱${context.monthlyIncome.toLocaleString()}
 - **Appliances/Devices:** ${
       context.appliances.length
-    } units (${context.appliances.join(", ")})
+    } units (${context.appliances.map((a) => a.name).join(", ")})
 - **Onboarded Date:** ${new Date().toLocaleDateString()}
 
-**Your Role:**
+${buildRenewableEnergyContext()}
+
+${buildPartnersContext()}
+
+**YOUR ROLE:**
 You provide personalized, data-driven renewable energy solutions specifically tailored to this user's home energy needs. You:
 1. Understand their energy consumption patterns based on their appliances
 2. Recommend optimal renewable energy systems (Solar, Wind, Hydro, Biomass)
@@ -136,17 +311,27 @@ You provide personalized, data-driven renewable energy solutions specifically ta
 4. Provide implementation timelines and next steps
 5. Answer questions about renewable energy technologies
 6. Suggest financing options based on their income
+7. Reference location-specific data from the renewable energy dataset
+8. Recommend IslaGrid partners when applicable
 
-**Important Guidelines:**
+**IMPORTANT GUIDELINES:**
 - Always reference their specific context (location, income, appliances)
 - Use Philippine peso (₱) for all financial calculations
 - Assume electricity rate of ₱12.5/kWh unless stated otherwise
 - Be conversational but professional
-- Provide specific, actionable recommendations
-- Include calculations and assumptions in your responses
+- Provide specific, actionable recommendations with calculations
+- Include assumptions and reasoning in your responses
 - Consider local climate and resource availability for ${context.location}
+- Use **bold text** for important terms and values
+- Structure proposals in clear markdown sections with headers
+- When recommending partners, explain how their services benefit the user
 
-When generating proposals, structure responses in clear sections with markdown formatting.`;
+**RESPONSE FORMAT:**
+- Use headers for main sections (# for h1, ## for h2, ### for h3)
+- Use **bold text** for emphasis and key values
+- Use bullet points for lists
+- Include calculations and ROI projections when relevant
+- Provide step-by-step implementation plans`;
 
     setConversationHistory([
       {
@@ -157,10 +342,22 @@ When generating proposals, structure responses in clear sections with markdown f
         role: "model",
         parts: [
           {
-            text:
-              "I understand my role. I'm ready to be your personalized renewable energy consultant based on your profile. I will provide tailored recommendations for your home in " +
-              context.location +
-              " based on your appliances and financial situation. What would you like to know about renewable energy solutions for your home?",
+            text: `I understand my role. I'm IslaBot, your personalized renewable energy consultant for **${
+              context.location
+            }**. 
+
+Based on your profile:
+- Monthly Income: **₱${context.monthlyIncome.toLocaleString()}**
+- Current Appliances: **${context.appliances.length} units**
+
+I have access to:
+- **Renewable energy data** for ${
+              RENEWABLE_ENERGY_DATA.barangays.length
+            } barangays across the Philippines
+- **Certified IslaGrid partners** specializing in solar, hydro, and wind solutions
+- **Financial tools** to calculate ROI, payback periods, and savings potential
+
+I'm ready to help you design the perfect renewable energy solution for your home. What would you like to know about renewable energy options, costs, or implementation?`,
           },
         ],
       },
@@ -180,25 +377,25 @@ When generating proposals, structure responses in clear sections with markdown f
       return;
     }
 
-    const newConversation = await initializeChat(token);
-    const defaultMessage: CreateMessageDTO = {
-      content:
-        "Hello! I am IslaBot, your personalized renewable energy consultant. I'm here to help you design the perfect home energy solution based on your location, income, and appliances. What would you like to know?",
-      sender: "bot",
-    };
-    const updatedConversation = await pushMessageToChat(
-      token,
-      newConversation.chatId,
-      defaultMessage
-    );
+    try {
+      const newConversation = await initializeChat(token);
+      const defaultMessage: CreateMessageDTO = {
+        content:
+          "Hello! I am **IslaBot**, your personalized renewable energy consultant. I'm here to help you design the perfect home energy solution based on your location, income, and appliances. What would you like to know?",
+        sender: "bot",
+      };
+      await pushMessageToChat(token, newConversation.chatId, defaultMessage);
 
-    const newConversations = await listAllChatsOfUser(token);
+      const newConversations = await listAllChatsOfUser(token);
 
-    setConversations(newConversations);
-    setCurrentConversationId(newConversation.chatId);
-    setMessageInput("");
-    if (typeof window !== "undefined" && window.innerWidth < 1024) {
-      setSidebarOpen(false);
+      setConversations(newConversations);
+      setCurrentConversationId(newConversation.chatId);
+      setMessageInput("");
+      if (typeof window !== "undefined" && window.innerWidth < 1024) {
+        setSidebarOpen(false);
+      }
+    } catch (error) {
+      console.error("Error creating conversation:", error);
     }
   };
 
@@ -208,19 +405,22 @@ When generating proposals, structure responses in clear sections with markdown f
       return;
     }
 
-    const deletedConversation = await deleteChat(token, conversationId);
+    try {
+      await deleteChat(token, conversationId);
 
-    const newConversations = await listAllChatsOfUser(token);
-    setCurrentConversationId(newConversations[0].chatId);
-    setMessageInput("");
+      const newConversations = await listAllChatsOfUser(token);
+      if (newConversations.length > 0) {
+        setCurrentConversationId(newConversations[0].chatId);
+      }
+      setMessageInput("");
 
-    setConversations(newConversations);
+      setConversations(newConversations);
+    } catch (error) {
+      console.error("Error deleting conversation:", error);
+    }
   };
 
-  // Call Gemini API with context
-  // ...existing code...
-
-  // Call Gemini API with context
+  // Call Gemini API with embedded context
   const callGeminiAPI = async (userMessage: string): Promise<string> => {
     try {
       const apiKey = process.env.NEXT_PUBLIC_GEMINI_API_KEY;
@@ -285,8 +485,6 @@ When generating proposals, structure responses in clear sections with markdown f
     }
   };
 
-  // ...existing code...
-
   const handleSendMessage = async () => {
     if (messageInput.trim().length === 0 || isLoading) {
       return;
@@ -305,20 +503,16 @@ When generating proposals, structure responses in clear sections with markdown f
       return;
     }
 
-    const updatedChat = await pushMessageToChat(
-      token,
-      conversationId,
-      newMessageDTO
-    );
-
-    const updatedChats = await listAllChatsOfUser(token);
-    setConversations(updatedChats);
-
-    setMessageInput("");
-    setIsLoading(true);
-
     try {
-      // Call Gemini API with user message
+      await pushMessageToChat(token, conversationId, newMessageDTO);
+
+      const updatedChats = await listAllChatsOfUser(token);
+      setConversations(updatedChats);
+
+      setMessageInput("");
+      setIsLoading(true);
+
+      // Call Gemini API with user message and embedded context
       const assistantResponse = await callGeminiAPI(newMessageDTO.content);
 
       const formattedMessage: CreateMessageDTO = {
@@ -326,14 +520,10 @@ When generating proposals, structure responses in clear sections with markdown f
         sender: "bot",
       };
 
-      const updatedChat = await pushMessageToChat(
-        token,
-        conversationId,
-        formattedMessage
-      );
+      await pushMessageToChat(token, conversationId, formattedMessage);
 
-      const updatedChats = await listAllChatsOfUser(token);
-      setConversations(updatedChats);
+      const finalChats = await listAllChatsOfUser(token);
+      setConversations(finalChats);
     } catch (error) {
       console.error("Error getting AI response:", error);
 
@@ -343,14 +533,14 @@ When generating proposals, structure responses in clear sections with markdown f
         sender: "bot",
       };
 
-      const updatedChat = await pushMessageToChat(
-        token,
-        conversationId,
-        errorMessage
-      );
+      try {
+        await pushMessageToChat(token, conversationId, errorMessage);
 
-      const updatedChats = await listAllChatsOfUser(token);
-      setConversations(updatedChats);
+        const errorChats = await listAllChatsOfUser(token);
+        setConversations(errorChats);
+      } catch (saveError) {
+        console.error("Error saving error message:", saveError);
+      }
     } finally {
       setIsLoading(false);
     }
@@ -364,14 +554,11 @@ When generating proposals, structure responses in clear sections with markdown f
     setOnboardingLoading(true);
     try {
       if (token) {
-        const response = await createUserContext(token, data);
+        await createUserContext(token, data);
         setUserContext(data);
         setShowOnboarding(false);
         initializeGeminiContext(data);
       }
-      setUserContext(data);
-      setShowOnboarding(false);
-      initializeGeminiContext(data);
     } catch (error) {
       console.error("Error saving onboarding data:", error);
       alert("An error occurred. Please try again.");
